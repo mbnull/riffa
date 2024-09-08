@@ -27,7 +27,7 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/../../../../riffa_hdl/shiftreg.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/shiftreg.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -40,70 +40,70 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/scsdpram.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/scsdpram.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/fifo.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/fifo.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/ff.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/ff.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/syncff.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/syncff.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rotate.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rotate.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/ram_2clk_1w_1r.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/ram_2clk_1w_1r.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/ram_1clk_1w_1r.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/ram_1clk_1w_1r.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/pipeline.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/pipeline.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/one_hot_mux.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/one_hot_mux.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/offset_to_mask.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/offset_to_mask.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -128,140 +128,140 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/offset_flag_to_one_hot.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/offset_flag_to_one_hot.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_data_shift.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_data_shift.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_data_fifo.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_data_fifo.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/sync_fifo.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/sync_fifo.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/mux.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/mux.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/cross_domain_signal.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/cross_domain_signal.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/counter.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/counter.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/async_fifo.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/async_fifo.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_writer.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_writer.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_monitor_64.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_monitor_64.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_monitor_32.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_monitor_32.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_monitor_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_monitor_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_channel_gate_64.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_channel_gate_64.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_channel_gate_32.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_channel_gate_32.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_channel_gate_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_channel_gate_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_buffer_64.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_buffer_64.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_buffer_32.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_buffer_32.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_buffer_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_buffer_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_hdr_fifo.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_hdr_fifo.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_data_pipeline.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_data_pipeline.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -274,175 +274,175 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_alignment_pipeline.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_alignment_pipeline.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/sg_list_requester.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/sg_list_requester.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/sg_list_reader_64.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/sg_list_reader_64.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/sg_list_reader_32.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/sg_list_reader_32.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/sg_list_reader_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/sg_list_reader_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_requester_mux.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_requester_mux.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_reader.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_reader.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_channel_gate.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_channel_gate.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/fifo_packer_64.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/fifo_packer_64.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/fifo_packer_32.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/fifo_packer_32.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/fifo_packer_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/fifo_packer_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/async_fifo_fwft.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/async_fifo_fwft.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_64.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_64.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_32.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_32.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_port_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_engine_selector.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_engine_selector.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_engine.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_engine.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_64.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_64.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_32.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_32.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rx_port_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/register.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/register.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/reset_controller.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/reset_controller.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_multiplexer_64.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_multiplexer_64.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_multiplexer_32.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_multiplexer_32.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_multiplexer_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_multiplexer_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -455,7 +455,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/txr_engine_ultrascale.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/txr_engine_ultrascale.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -468,154 +468,154 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/txr_engine_classic.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/txr_engine_classic.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/txc_engine_ultrascale.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/txc_engine_ultrascale.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/txc_engine_classic.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/txc_engine_classic.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rxr_engine_ultrascale.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rxr_engine_ultrascale.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rxr_engine_classic.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rxr_engine_classic.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rxc_engine_ultrascale.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rxc_engine_ultrascale.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rxc_engine_classic.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rxc_engine_classic.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/reorder_queue_output.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/reorder_queue_output.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/reorder_queue_input.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/reorder_queue_input.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/interrupt_controller.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/interrupt_controller.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/demux.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/demux.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/channel_64.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/channel_64.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/channel_32.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/channel_32.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/channel_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/channel_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rxc_engine_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rxc_engine_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rxr_engine_128.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rxr_engine_128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_multiplexer.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_multiplexer.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_engine_ultrascale.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_engine_ultrascale.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/tx_engine_classic.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/tx_engine_classic.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rx_engine_ultrascale.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rx_engine_ultrascale.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/rx_engine_classic.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/rx_engine_classic.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/reorder_queue.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/reorder_queue.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -628,35 +628,35 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/registers.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/registers.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/recv_credit_flow_ctrl.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/recv_credit_flow_ctrl.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/interrupt.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/interrupt.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/channel.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/channel.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/reset_extender.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/reset_extender.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -669,42 +669,42 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/translation_xilinx.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/translation_xilinx.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/riffa.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/riffa.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/engine_layer.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/engine_layer.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../riffa_hdl/chnl_tester.v">
+      <File Path="$PPRDIR/../../../../riffa_hdl/chnl_tester.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../riffa_wrapper_kc705.v">
+      <File Path="$PPRDIR/../../riffa_wrapper_kc705.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../hdl/KC705_Gen2x8If128.v">
+      <File Path="$PPRDIR/../hdl/KC705_Gen2x8If128.sv">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
