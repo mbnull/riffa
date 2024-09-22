@@ -16,31 +16,42 @@ module GW5ASTGen2_x4lf256
     output [3:0] LED
 );
 
-
+    logic tl_rx_sop;
+    logic tl_rx_eop;
+    logic tl_rx_data;
+    logic [7:0]tl_rx_valid;
+    logic [5:0]tl_rx_bardec;
+    logic [7:0]tl_rx_err;
 
     SerDes_Top pcie_serder_top(
-        .PCIE_Controller_Top_pcie_tl_rx_sop_o(PCIE_Controller_Top_pcie_tl_rx_sop_o_o), //output PCIE_Controller_Top_pcie_tl_rx_sop_o
-        .PCIE_Controller_Top_pcie_tl_rx_eop_o(PCIE_Controller_Top_pcie_tl_rx_eop_o_o), //output PCIE_Controller_Top_pcie_tl_rx_eop_o
-        .PCIE_Controller_Top_pcie_tl_rx_data_o(PCIE_Controller_Top_pcie_tl_rx_data_o_o), //output [255:0] PCIE_Controller_Top_pcie_tl_rx_data_o
-        .PCIE_Controller_Top_pcie_tl_rx_valid_o(PCIE_Controller_Top_pcie_tl_rx_valid_o_o), //output [7:0] PCIE_Controller_Top_pcie_tl_rx_valid_o
-        .PCIE_Controller_Top_pcie_tl_rx_bardec_o(PCIE_Controller_Top_pcie_tl_rx_bardec_o_o), //output [5:0] PCIE_Controller_Top_pcie_tl_rx_bardec_o
-        .PCIE_Controller_Top_pcie_tl_rx_err_o(PCIE_Controller_Top_pcie_tl_rx_err_o_o), //output [7:0] PCIE_Controller_Top_pcie_tl_rx_err_o
+        // rx data
+        .PCIE_Controller_Top_pcie_tl_rx_sop_o(tl_rx_sop), //output PCIE_Controller_Top_pcie_tl_rx_sop_o
+        .PCIE_Controller_Top_pcie_tl_rx_eop_o(tl_rx_eop), //output PCIE_Controller_Top_pcie_tl_rx_eop_o
+        .PCIE_Controller_Top_pcie_tl_rx_data_o(tl_rx_data), //output [255:0] PCIE_Controller_Top_pcie_tl_rx_data_o
+        .PCIE_Controller_Top_pcie_tl_rx_valid_o(tl_rx_valid), //output [7:0] PCIE_Controller_Top_pcie_tl_rx_valid_o
+        .PCIE_Controller_Top_pcie_tl_rx_bardec_o(tl_rx_bardec), //output [5:0] PCIE_Controller_Top_pcie_tl_rx_bardec_o
+        .PCIE_Controller_Top_pcie_tl_rx_err_o(tl_rx_err), //output [7:0] PCIE_Controller_Top_pcie_tl_rx_err_o
+
         .PCIE_Controller_Top_pcie_tl_tx_wait_o(PCIE_Controller_Top_pcie_tl_tx_wait_o_o), //output PCIE_Controller_Top_pcie_tl_tx_wait_o
         .PCIE_Controller_Top_pcie_tl_int_ack_o(PCIE_Controller_Top_pcie_tl_int_ack_o_o), //output PCIE_Controller_Top_pcie_tl_int_ack_o
         .PCIE_Controller_Top_pcie_ltssm_o(PCIE_Controller_Top_pcie_ltssm_o_o), //output [4:0] PCIE_Controller_Top_pcie_ltssm_o
         .PCIE_Controller_Top_pcie_tl_tx_creditsp_o(PCIE_Controller_Top_pcie_tl_tx_creditsp_o_o), //output [31:0] PCIE_Controller_Top_pcie_tl_tx_creditsp_o
         .PCIE_Controller_Top_pcie_tl_tx_creditsnp_o(PCIE_Controller_Top_pcie_tl_tx_creditsnp_o_o), //output [31:0] PCIE_Controller_Top_pcie_tl_tx_creditsnp_o
         .PCIE_Controller_Top_pcie_tl_tx_creditscpl_o(PCIE_Controller_Top_pcie_tl_tx_creditscpl_o_o), //output [31:0] PCIE_Controller_Top_pcie_tl_tx_creditscpl_o
+        
         .PCIE_Controller_Top_pcie_tl_cfg_busdev_o(PCIE_Controller_Top_pcie_tl_cfg_busdev_o_o), //output [12:0] PCIE_Controller_Top_pcie_tl_cfg_busdev_o
         .PCIE_Controller_Top_pcie_linkup_o(PCIE_Controller_Top_pcie_linkup_o_o), //output PCIE_Controller_Top_pcie_linkup_o
         .PCIE_Controller_Top_pcie_rstn_i(PCIE_Controller_Top_pcie_rstn_i_i), //input PCIE_Controller_Top_pcie_rstn_i
         .PCIE_Controller_Top_pcie_tl_clk_i(PCIE_Controller_Top_pcie_tl_clk_i_i), //input PCIE_Controller_Top_pcie_tl_clk_i
         .PCIE_Controller_Top_pcie_tl_rx_wait_i(PCIE_Controller_Top_pcie_tl_rx_wait_i_i), //input PCIE_Controller_Top_pcie_tl_rx_wait_i
         .PCIE_Controller_Top_pcie_tl_rx_masknp_i(PCIE_Controller_Top_pcie_tl_rx_masknp_i_i), //input PCIE_Controller_Top_pcie_tl_rx_masknp_i
+
+        // tx data
         .PCIE_Controller_Top_pcie_tl_tx_sop_i(PCIE_Controller_Top_pcie_tl_tx_sop_i_i), //input PCIE_Controller_Top_pcie_tl_tx_sop_i
         .PCIE_Controller_Top_pcie_tl_tx_eop_i(PCIE_Controller_Top_pcie_tl_tx_eop_i_i), //input PCIE_Controller_Top_pcie_tl_tx_eop_i
         .PCIE_Controller_Top_pcie_tl_tx_data_i(PCIE_Controller_Top_pcie_tl_tx_data_i_i), //input [255:0] PCIE_Controller_Top_pcie_tl_tx_data_i
         .PCIE_Controller_Top_pcie_tl_tx_valid_i(PCIE_Controller_Top_pcie_tl_tx_valid_i_i), //input [7:0] PCIE_Controller_Top_pcie_tl_tx_valid_i
+
         .PCIE_Controller_Top_pcie_tl_int_status_i(PCIE_Controller_Top_pcie_tl_int_status_i_i), //input PCIE_Controller_Top_pcie_tl_int_status_i
         .PCIE_Controller_Top_pcie_tl_int_req_i(PCIE_Controller_Top_pcie_tl_int_req_i_i), //input PCIE_Controller_Top_pcie_tl_int_req_i
         .PCIE_Controller_Top_pcie_tl_int_msinum_i(PCIE_Controller_Top_pcie_tl_int_msinum_i_i) //input [4:0] PCIE_Controller_Top_pcie_tl_int_msinum_i
