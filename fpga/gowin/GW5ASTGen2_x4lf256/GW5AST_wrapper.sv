@@ -1,6 +1,5 @@
 `include "trellis.vh"
 `include "riffa.vh"
-`include "altera.vh"
 `include "ultrascale.vh"
 `include "functions.vh"
 `timescale 1ps / 1ps
@@ -34,7 +33,25 @@ module GW5AST_wrapper    #( // Number of RIFFA Channels
     input [(C_NUM_CHNL*`SIG_CHNL_OFFSET_W)-1:0]  CHNL_TX_OFF, // Channel write offset
     input [(C_NUM_CHNL*C_PCI_DATA_WIDTH)-1:0]    CHNL_TX_DATA, // Channel write data
     input [C_NUM_CHNL-1:0]                       CHNL_TX_DATA_VALID, // Channel write data valid
-    output [C_NUM_CHNL-1:0]                      CHNL_TX_DATA_REN // Channel write data has been recieved
+    output [C_NUM_CHNL-1:0]                      CHNL_TX_DATA_REN, // Channel write data has been recieved
+    input                                        tl_rx_sop,
+    input                                        tl_rx_eop,
+    input [C_PCI_DATA_WIDTH-1:0]                 tl_rx_data,
+    input [7:0]                                  tl_rx_valid,
+    input [5:0]                                  tl_rx_bardec,
+    output                                       tl_rx_wait,
+
+    output                                       tl_tx_sop,
+    output                                       tl_tx_eop,
+    output [C_PCI_DATA_WIDTH-1:0]                tl_tx_data,
+    output [7:0]                                 tl_tx_valid,
+    input                                        tl_tx_wait,
+    input [31:0]                                 tl_tx_cpl,
+    input [12:0]                                 tl_cfg_busdev,
+    output                                       msi_en,
+    output                                       msi_req,
+    output                                       msinum,
+    input                                        msi_ack
 );
 
 
@@ -524,6 +541,23 @@ module GW5AST_wrapper    #( // Number of RIFFA Channels
         .TX_TLP_END_OFFSET             (tx_tlp_end_offset[clog2s(C_PCI_DATA_WIDTH/32)-1:0]),
         .INTR_MSI_REQUEST              (intr_msi_request),
         /*AUTOINST*/
+        .TL_RX_DATA                    (tl_rx_data),
+        .TL_RX_SOP                     (tl_rx_sop),
+        .TL_RX_EOP                     (tl_rx_eop),
+        .TL_RX_VALID                   (tl_rx_valid),
+        .TL_RX_BARDEC                  (tl_rx_bardec),
+        .TL_RX_WAIT                    (tl_rx_wait),
+        .TL_TX_DATA                    (tl_tx_data),
+        .TL_TX_VALID                   (tl_tx_valid),
+        .TL_TX_WAIT                    (tl_tx_wait),
+        .TL_TX_EOP                     (tl_tx_eop),
+        .TL_TX_SOP                     (tl_tx_sop),
+        .TL_CFG_BUSDEV                 (tl_cfg_busdev),
+        .TL_TX_CPL                     (tl_tx_cpl),
+        .APP_MSI_ACK                   (msi_ack),
+        .APP_MSI_REQ                   (msi_req),
+        .APP_MSI_EN                    (msi_en),
+        .APP_MSI_MSINUM                (msinum)
     );
 
 endmodule
