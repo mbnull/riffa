@@ -206,7 +206,141 @@ module tx_alignment_pipeline
     wire [`SIG_PACKETLEN_W-1:0]                wPktCtr;
 
     wire                                       wCounterReset;
-`include "schedules.vh"
+// `include "schedules.vh"
+`define TXA_HDR0_INDEX 0
+`define TXA_HDR1_INDEX 1
+`define TXA_HDR2_INDEX 2
+`define TXA_HDR3_INDEX 3
+`define TXA_DW0_INDEX 4
+`define TXA_DW1_INDEX 5
+`define TXA_DW2_INDEX 6
+`define TXA_DW3_INDEX 7
+`define TXA_DW4_INDEX 8
+`define TXA_DW5_INDEX 9
+`define TXA_DW6_INDEX 10
+`define TXA_DW7_INDEX 11
+
+`define TXA_5DW 3'b101
+`define TXA_4DW 3'b100
+`define TXA_3DW 3'b011
+
+`define TXA_3DWH 1'b0
+`define TXA_4DWH 1'b1
+`define TXA_NOB  1'b0
+`define TXA_INSB 1'b1
+
+`define TXA_READ 1'b1
+assign wTxMuxInputs[0] = {wAggregate[`TXA_DW5_INDEX],
+wAggregate[`TXA_DW4_INDEX],
+wAggregate[`TXA_DW3_INDEX],
+wAggregate[`TXA_HDR0_INDEX]};
+assign wSchedule[0][{`TXA_3DW,1'b0}] = 2'd0;
+assign wSchedule[0][{`TXA_3DW,1'b1}] = 2'd3;
+
+assign wSchedule[0][{`TXA_4DW,1'b0}] = 2'd0;
+assign wSchedule[0][{`TXA_4DW,1'b1}] = 2'd2;
+
+assign wSchedule[0][{`TXA_5DW,1'b0}] = 2'd0;
+assign wSchedule[0][{`TXA_5DW,1'b1}] = 2'd1;
+
+
+assign wTxMuxInputs[1] = {wAggregate[`TXA_DW6_INDEX],
+wAggregate[`TXA_DW5_INDEX],
+wAggregate[`TXA_DW4_INDEX],
+wAggregate[`TXA_HDR1_INDEX]};
+
+assign wSchedule[1][{`TXA_3DW,1'b0}] = 2'd0;
+assign wSchedule[1][{`TXA_3DW,1'b1}] = 2'd3;
+
+assign wSchedule[1][{`TXA_4DW,1'b0}] = 2'd0;
+assign wSchedule[1][{`TXA_4DW,1'b1}] = 2'd2;
+
+assign wSchedule[1][{`TXA_5DW,1'b0}] = 2'd0;
+assign wSchedule[1][{`TXA_5DW,1'b1}] = 2'd1;
+
+assign wTxMuxInputs[2] = {wAggregate[`TXA_DW7_INDEX],
+wAggregate[`TXA_DW6_INDEX],
+wAggregate[`TXA_DW5_INDEX],
+wAggregate[`TXA_HDR2_INDEX]};
+
+assign wSchedule[2][{`TXA_3DW,1'b0}] = 2'd0;
+assign wSchedule[2][{`TXA_3DW,1'b1}] = 2'd3;
+
+assign wSchedule[2][{`TXA_4DW,1'b0}] = 2'd0;
+assign wSchedule[2][{`TXA_4DW,1'b1}] = 2'd2;
+
+assign wSchedule[2][{`TXA_5DW,1'b0}] = 2'd0;
+assign wSchedule[2][{`TXA_5DW,1'b1}] = 2'd1;
+
+assign wTxMuxInputs[3] = {wAggregate[`TXA_DW7_INDEX],
+wAggregate[`TXA_DW6_INDEX],
+wAggregate[`TXA_DW0_INDEX],
+wAggregate[`TXA_HDR3_INDEX]};
+
+assign wSchedule[3][{`TXA_3DW,1'b0}] = 2'd1;
+assign wSchedule[3][{`TXA_3DW,1'b1}] = 2'd1;
+
+assign wSchedule[3][{`TXA_4DW,1'b0}] = 2'd0;
+assign wSchedule[3][{`TXA_4DW,1'b1}] = 2'd3;
+
+assign wSchedule[3][{`TXA_5DW,1'b0}] = 2'd0;
+assign wSchedule[3][{`TXA_5DW,1'b1}] = 2'd2;
+
+assign wTxMuxInputs[4] = {wAggregate[`TXA_DW7_INDEX],
+wAggregate[`TXA_DW1_INDEX],
+wAggregate[`TXA_DW0_INDEX],
+wAggregate[`TXA_DW0_INDEX]};
+
+assign wSchedule[4][{`TXA_3DW,1'b0}] = 2'd2;
+assign wSchedule[4][{`TXA_3DW,1'b1}] = 2'd2;
+
+assign wSchedule[4][{`TXA_4DW,1'b0}] = 2'd0;
+assign wSchedule[4][{`TXA_4DW,1'b1}] = 2'd0;
+
+assign wSchedule[4][{`TXA_5DW,1'b0}] = 2'd3;
+assign wSchedule[4][{`TXA_5DW,1'b1}] = 2'd3;
+
+assign wTxMuxInputs[5] = {wAggregate[`TXA_DW2_INDEX],
+wAggregate[`TXA_DW1_INDEX],
+wAggregate[`TXA_DW1_INDEX],
+wAggregate[`TXA_DW0_INDEX]};
+
+assign wSchedule[5][{`TXA_3DW,1'b0}] = 2'd3;
+assign wSchedule[5][{`TXA_3DW,1'b1}] = 2'd3;
+
+assign wSchedule[5][{`TXA_4DW,1'b0}] = 2'd1;
+assign wSchedule[5][{`TXA_4DW,1'b1}] = 2'd1;
+
+assign wSchedule[5][{`TXA_5DW,1'b0}] = 2'd0;
+assign wSchedule[5][{`TXA_5DW,1'b1}] = 2'd0;
+
+assign wTxMuxInputs[6] = {wAggregate[`TXA_DW3_INDEX],
+wAggregate[`TXA_DW2_INDEX],
+wAggregate[`TXA_DW2_INDEX],
+wAggregate[`TXA_DW1_INDEX]};
+
+assign wSchedule[6][{`TXA_3DW,1'b0}] = 2'd3;
+assign wSchedule[6][{`TXA_3DW,1'b1}] = 2'd3;
+
+assign wSchedule[6][{`TXA_4DW,1'b0}] = 2'd1;
+assign wSchedule[6][{`TXA_4DW,1'b1}] = 2'd1;
+
+assign wSchedule[6][{`TXA_5DW,1'b0}] = 2'd0;
+assign wSchedule[6][{`TXA_5DW,1'b1}] = 2'd0;
+
+assign wTxMuxInputs[7] = {wAggregate[`TXA_DW4_INDEX],
+wAggregate[`TXA_DW3_INDEX],
+wAggregate[`TXA_DW3_INDEX],
+wAggregate[`TXA_DW2_INDEX]};
+
+assign wSchedule[7][{`TXA_3DW,1'b0}] = 2'd3;
+assign wSchedule[7][{`TXA_3DW,1'b1}] = 2'd3;
+
+assign wSchedule[7][{`TXA_4DW,1'b0}] = 2'd1;
+assign wSchedule[7][{`TXA_4DW,1'b1}] = 2'd1;
+
+assign wSchedule[7][{`TXA_5DW,1'b0}] = 2'd0;
+assign wSchedule[7][{`TXA_5DW,1'b1}] = 2'd0;
 
     // Assignments for the Input Register Stage
     assign __wTxHdrPacketLenMinus1 = __wTxHdrPacketLen - 1;

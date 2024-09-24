@@ -81,19 +81,21 @@ module translation_gowin
   assign RX_TLP_START_FLAG = TL_RX_SOP;
   assign RX_TLP_END_FLAG = TL_RX_EOP;
   assign RX_TLP_BAR_DECODE = TL_RX_BARDEC;
+  logic [2:0] reoff;
   always_comb begin
     case (TL_RX_VALID)
-      8'hFF : RX_TLP_END_OFFSET = 3'b000;
-      8'hFE : RX_TLP_END_OFFSET = 3'b001;
-      8'hFC : RX_TLP_END_OFFSET = 3'b010;
-      8'hF8 : RX_TLP_END_OFFSET = 3'b011;
-      8'hF0 : RX_TLP_END_OFFSET = 3'b100;
-      8'hE0 : RX_TLP_END_OFFSET = 3'b101;
-      8'hC0 : RX_TLP_END_OFFSET = 3'b110;
-      8'h80 : RX_TLP_END_OFFSET = 3'b111; // should at least 32bit valid
-      default : RX_TLP_END_OFFSET = 3'b000; // not posible
+      8'hFF : reoff = 3'b000;
+      8'hFE : reoff = 3'b001;
+      8'hFC : reoff = 3'b010;
+      8'hF8 : reoff = 3'b011;
+      8'hF0 : reoff = 3'b100;
+      8'hE0 : reoff = 3'b101;
+      8'hC0 : reoff = 3'b110;
+      8'h80 : reoff = 3'b111; // should at least 32bit valid
+      default : reoff = 3'b000; // not posible
     endcase
   end
+  assign RX_TLP_END_OFFSET = reoff;
   assign TL_RX_WAIT = RX_TLP_READY;
   // }}}
 
@@ -108,6 +110,7 @@ module translation_gowin
   assign TL_TX_SOP = TX_TLP_START_FLAG;
   assign TL_TX_EOP = TX_TLP_END_FLAG;
   assign TX_TLP_READY = rTxStReady; // wait means activate in low
+  assign TL_TX_VALID = ((TxExtend>>(7-TX_TLP_START_OFFSET))<<TX_TLP_END_OFFSET);
   assign TL_TX_VALID = TxExtend[7-TX_TLP_START_OFFSET[2:0]:TX_TLP_END_OFFSET[2:0]];
   // }}}
 
