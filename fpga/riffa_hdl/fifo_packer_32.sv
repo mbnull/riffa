@@ -76,12 +76,12 @@ assign PACKED_DATA_FLUSHED = rPackedFlushed;
 
 // Buffers input data to ease timing.
 always @ (posedge CLK) begin
-	rPackedDone <= #1 (RST ? 1'd0 : _rPackedDone);
-	rPackedErr <= #1 (RST ? 1'd0 : _rPackedErr);
-	rPackedFlush <= #1 (RST ? 1'd0 : _rPackedFlush);
-	rPackedFlushed <= #1 (RST ? 1'd0 : _rPackedFlushed);
-	rDataIn <= #1 _rDataIn;
-	rDataInEn <= #1 (RST ? 1'd0 : _rDataInEn);
+	rPackedDone <=  (RST ? 1'd0 : _rPackedDone);
+	rPackedErr <=  (RST ? 1'd0 : _rPackedErr);
+	rPackedFlush <=  (RST ? 1'd0 : _rPackedFlush);
+	rPackedFlushed <=  (RST ? 1'd0 : _rPackedFlushed);
+	rDataIn <=  _rDataIn;
+	rDataInEn <=  (RST ? 1'd0 : _rDataInEn);
 end
 
 always @ (*) begin

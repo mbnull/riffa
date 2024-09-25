@@ -172,22 +172,22 @@ module reorder_queue_input
     // Pipeline the input and intermediate data
     always @ (posedge CLK) begin
         if (RST) begin
-            rValid <= #1 0;
-            rTag <= #1 0;
+            rValid <=  0;
+            rTag <=  0;
         end
         else begin
-            rValid <= #1 (rValid<<1) | VALID;
-            rTag <= #1 (rTag<<C_TAG_WIDTH) | TAG;
+            rValid <=  (rValid<<1) | VALID;
+            rTag <=  (rTag<<C_TAG_WIDTH) | TAG;
         end
-        rData <= #1 (rData<<C_PCI_DATA_WIDTH) | wData;
-        rDE <= #1 (rDE<<C_PCI_DATA_WORD) | wDE;//DATA_EN;
-        rDECount <= #1 (rDECount<<C_PCI_DATA_COUNT_WIDTH) | wDECount;//DATA_EN_COUNT;
-        rDone <= #1 (rDone<<1) | DONE;
-        rErr <= #1 (rErr<<1) | ERR;
+        rData <=  (rData<<C_PCI_DATA_WIDTH) | wData;
+        rDE <=  (rDE<<C_PCI_DATA_WORD) | wDE;//DATA_EN;
+        rDECount <=  (rDECount<<C_PCI_DATA_COUNT_WIDTH) | wDECount;//DATA_EN_COUNT;
+        rDone <=  (rDone<<1) | DONE;
+        rErr <=  (rErr<<1) | ERR;
         
-        rDEShifted <= #1 (rDEShifted<<C_PCI_DATA_WORD) | rDEShift;
-        rWords <= #1 (rWords<<C_TAG_DW_COUNT_WIDTH) | rCount;
-        rShifted <= #1 (rShifted<<C_PCI_DATA_WORD_WIDTH) | rShift;
+        rDEShifted <=  (rDEShifted<<C_PCI_DATA_WORD) | rDEShift;
+        rWords <=  (rWords<<C_TAG_DW_COUNT_WIDTH) | rCount;
+        rShifted <=  (rShifted<<C_PCI_DATA_WORD_WIDTH) | rShift;
     end
 
 
@@ -198,52 +198,52 @@ module reorder_queue_input
         // STAGE 1: Request existing count from RAM
         // To cover the gap b/t reads and writes to RAM, next cycle we might need 
         // to use the existing or even the previous rCount value if the tags match.
-        rUseCurrCount <= #1 (rTag[0*C_TAG_WIDTH +:C_TAG_WIDTH] == rTag[1*C_TAG_WIDTH +:C_TAG_WIDTH] && rValid[1]);
-        rUsePrevCount <= #1 (rTag[0*C_TAG_WIDTH +:C_TAG_WIDTH] == rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH] && rValid[2]);
-        rPrevCount <= #1 rCount;
+        rUseCurrCount <=  (rTag[0*C_TAG_WIDTH +:C_TAG_WIDTH] == rTag[1*C_TAG_WIDTH +:C_TAG_WIDTH] && rValid[1]);
+        rUsePrevCount <=  (rTag[0*C_TAG_WIDTH +:C_TAG_WIDTH] == rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH] && rValid[2]);
+        rPrevCount <=  rCount;
         // See if we need to reset the count
-        rCountValid <= #1 (RST ? 1'd0 : rCountRst>>rTag[0*C_TAG_WIDTH +:C_TAG_WIDTH]);
-        rValidCount <= #1 (RST ? 0 : rValid[0]<<rTag[0*C_TAG_WIDTH +:C_TAG_WIDTH]);
+        rCountValid <=  (RST ? 1'd0 : rCountRst>>rTag[0*C_TAG_WIDTH +:C_TAG_WIDTH]);
+        rValidCount <=  (RST ? 0 : rValid[0]<<rTag[0*C_TAG_WIDTH +:C_TAG_WIDTH]);
         
         // STAGE 2: Calculate new count (saves next cycle)
         if (rUseCurrCount) begin
-            rShift <= #1 rCount[0 +:C_PCI_DATA_WORD_WIDTH];
-            rCount <= #1 rCount + rDECount[1*C_PCI_DATA_COUNT_WIDTH +:C_PCI_DATA_COUNT_WIDTH];
+            rShift <=  rCount[0 +:C_PCI_DATA_WORD_WIDTH];
+            rCount <=  rCount + rDECount[1*C_PCI_DATA_COUNT_WIDTH +:C_PCI_DATA_COUNT_WIDTH];
         end
         else if (rUsePrevCount) begin
-            rShift <= #1 rPrevCount[0 +:C_PCI_DATA_WORD_WIDTH];
-            rCount <= #1 rPrevCount + rDECount[1*C_PCI_DATA_COUNT_WIDTH +:C_PCI_DATA_COUNT_WIDTH];
+            rShift <=  rPrevCount[0 +:C_PCI_DATA_WORD_WIDTH];
+            rCount <=  rPrevCount + rDECount[1*C_PCI_DATA_COUNT_WIDTH +:C_PCI_DATA_COUNT_WIDTH];
         end
         else begin
-            rShift <= #1 wCountClr[0 +:C_PCI_DATA_WORD_WIDTH];
-            rCount <= #1 wCountClr + rDECount[1*C_PCI_DATA_COUNT_WIDTH +:C_PCI_DATA_COUNT_WIDTH];
+            rShift <=  wCountClr[0 +:C_PCI_DATA_WORD_WIDTH];
+            rCount <=  wCountClr + rDECount[1*C_PCI_DATA_COUNT_WIDTH +:C_PCI_DATA_COUNT_WIDTH];
         end
         
         // STAGE 3: Request existing positions from RAM
         // Barrel shift the DE
-        rDEShift <= #1 (rDE[2*C_PCI_DATA_WORD +:C_PCI_DATA_WORD]<<rShift) | 
+        rDEShift <=  (rDE[2*C_PCI_DATA_WORD +:C_PCI_DATA_WORD]<<rShift) | 
                     (rDE[2*C_PCI_DATA_WORD +:C_PCI_DATA_WORD]>>(C_PCI_DATA_WORD-rShift));
         // To cover the gap b/t reads and writes to RAM, next cycle we might need 
         // to use the existing or even the previous rPos values if the tags match.
-        rUseCurrPos <= #1 (rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH] == rTag[3*C_TAG_WIDTH +:C_TAG_WIDTH] && rValid[3]);
-        rUsePrevPos <= #1 (rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH] == rTag[4*C_TAG_WIDTH +:C_TAG_WIDTH] && rValid[4]);
+        rUseCurrPos <=  (rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH] == rTag[3*C_TAG_WIDTH +:C_TAG_WIDTH] && rValid[3]);
+        rUsePrevPos <=  (rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH] == rTag[4*C_TAG_WIDTH +:C_TAG_WIDTH] && rValid[4]);
         for (i = 0; i < C_PCI_DATA_WORD; i = i + 1) begin
-            rPrevPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <= #1 
+            rPrevPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <=  
                  (RST ? wZero[C_DATA_ADDR_STRIDE_WIDTH-1:0] : rPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH]);
         end
         // See if we need to reset the positions
-        rPosValid <= #1 (RST ? 1'd0 : rPosRst>>rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH]);
-        rValidPos <= #1 (RST ? 0 : rValid[2]<<rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH]);
+        rPosValid <=  (RST ? 1'd0 : rPosRst>>rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH]);
+        rValidPos <=  (RST ? 0 : rValid[2]<<rTag[2*C_TAG_WIDTH +:C_TAG_WIDTH]);
 
         // STAGE 4: Calculate new positions (saves next cycle)
         if (rUseCurrPos) begin
             for (i = 0; i < C_PCI_DATA_WORD; i = i + 1) begin
-                rPosNow[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <= #1 
+                rPosNow[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <=  
                      (RST ? 
                       wZero[C_DATA_ADDR_STRIDE_WIDTH-1:0] : 
                       rPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH]);
                 
-                rPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <= #1 
+                rPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <=  
                      (RST ? 
                       wZero[C_DATA_ADDR_STRIDE_WIDTH-1:0] : 
                       rPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] + rDEShift[i]);
@@ -251,11 +251,11 @@ module reorder_queue_input
         end
         else if (rUsePrevPos) begin
             for (i = 0; i < C_PCI_DATA_WORD; i = i + 1) begin
-                rPosNow[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <= #1 
+                rPosNow[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <=  
                      (RST ? 
                       wZero[C_DATA_ADDR_STRIDE_WIDTH-1:0] : 
                       rPrevPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH]);
-                rPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <= #1 
+                rPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <=  
                      (RST ? 
                       wZero[C_DATA_ADDR_STRIDE_WIDTH-1:0] : 
                       rPrevPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] + rDEShift[i]);
@@ -263,32 +263,32 @@ module reorder_queue_input
         end
         else begin
             for (i = 0; i < C_PCI_DATA_WORD; i = i + 1) begin
-                rPosNow[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <= #1 
+                rPosNow[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <=  
                      (RST ? 
                       wZero[C_DATA_ADDR_STRIDE_WIDTH-1:0] : 
                       wPosClr[i*C_DATA_ADDR_STRIDE_WIDTH +:C_DATA_ADDR_STRIDE_WIDTH]);
-                rPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <= #1 
+                rPos[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] <=  
                       (RST ? 
                        wZero[C_DATA_ADDR_STRIDE_WIDTH-1:0] : 
                        wPosClr[i*C_DATA_ADDR_STRIDE_WIDTH +:C_DATA_ADDR_STRIDE_WIDTH] + rDEShift[i]);
             end
         end
         // Calculate the base address offset
-        rBaseAddr <= #1 rTag[3*C_TAG_WIDTH +:C_TAG_WIDTH]<<C_DATA_ADDR_STRIDE_WIDTH;
+        rBaseAddr <=  rTag[3*C_TAG_WIDTH +:C_TAG_WIDTH]<<C_DATA_ADDR_STRIDE_WIDTH;
         // Calculate the shift amounts for barrel shifting payload data
-        rShiftUp <= #1 rShifted[0*C_PCI_DATA_WORD_WIDTH +:C_PCI_DATA_WORD_WIDTH]<<5;
-        rShiftDown <= #1 (C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0] - rShifted[0*C_PCI_DATA_WORD_WIDTH +:C_PCI_DATA_WORD_WIDTH])<<5;
+        rShiftUp <=  rShifted[0*C_PCI_DATA_WORD_WIDTH +:C_PCI_DATA_WORD_WIDTH]<<5;
+        rShiftDown <=  (C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0] - rShifted[0*C_PCI_DATA_WORD_WIDTH +:C_PCI_DATA_WORD_WIDTH])<<5;
 
         // STAGE 5: Prepare to write data, final info
         for (i = 0; i < C_PCI_DATA_WORD; i = i + 1) begin
-            rAddr[C_DATA_ADDR_WIDTH*i +:C_DATA_ADDR_WIDTH] <= #1 
+            rAddr[C_DATA_ADDR_WIDTH*i +:C_DATA_ADDR_WIDTH] <=  
                  rPosNow[C_DATA_ADDR_STRIDE_WIDTH*i +:C_DATA_ADDR_STRIDE_WIDTH] + rBaseAddr;
         end
-        rDataShifted <= #1 (rData[4*C_PCI_DATA_WIDTH +:C_PCI_DATA_WIDTH]<<rShiftUp) | 
+        rDataShifted <=  (rData[4*C_PCI_DATA_WIDTH +:C_PCI_DATA_WIDTH]<<rShiftUp) | 
                         (rData[4*C_PCI_DATA_WIDTH +:C_PCI_DATA_WIDTH]>>rShiftDown);
-        rLTE1Pkt <= #1 (rWords[1*C_TAG_DW_COUNT_WIDTH +:C_TAG_DW_COUNT_WIDTH] <= C_PCI_DATA_WORD);
-        rLTE2Pkt <= #1 (rWords[1*C_TAG_DW_COUNT_WIDTH +:C_TAG_DW_COUNT_WIDTH] <= (C_PCI_DATA_WORD*2));
-        rFinish <= #1 (rValid[4] & (rDone[4] | rErr[4]))<<rTag[4*C_TAG_WIDTH +:C_TAG_WIDTH];
+        rLTE1Pkt <=  (rWords[1*C_TAG_DW_COUNT_WIDTH +:C_TAG_DW_COUNT_WIDTH] <= C_PCI_DATA_WORD);
+        rLTE2Pkt <=  (rWords[1*C_TAG_DW_COUNT_WIDTH +:C_TAG_DW_COUNT_WIDTH] <= (C_PCI_DATA_WORD*2));
+        rFinish <=  (rValid[4] & (rDone[4] | rErr[4]))<<rTag[4*C_TAG_WIDTH +:C_TAG_WIDTH];
 
         // STAGE 6: Write data, final info
     end
@@ -297,12 +297,12 @@ module reorder_queue_input
     // Reset the count and positions when needed
     always @ (posedge CLK) begin
         if (RST) begin
-            rCountRst <= #1 0;
-            rPosRst <= #1 0;
+            rCountRst <=  0;
+            rPosRst <=  0;
         end
         else begin
-            rCountRst <= #1 (rCountRst | rValidCount) & ~TAG_CLEAR;
-            rPosRst <= #1 (rPosRst | rValidPos) & ~TAG_CLEAR;
+            rCountRst <=  (rCountRst | rValidCount) & ~TAG_CLEAR;
+            rPosRst <=  (rPosRst | rValidPos) & ~TAG_CLEAR;
         end
     end
 

@@ -180,11 +180,11 @@ assign TX_LAST = rReqLast;
 
 // Buffer the input signals that come from outside the tx_port.
 always @ (posedge CLK) begin
-	rTxnAck <= #1 (RST ? 1'd0 : _rTxnAck);
-	rTxnDoneAck <= #1 (RST ? 1'd0 : _rTxnDoneAck);
-	rSgErr <= #1 (RST ? 1'd0 : _rSgErr);
-	rTxReqAck <= #1 (RST ? 1'd0 : _rTxReqAck);
-	rTxSent <= #1 (RST ? 1'd0 : _rTxSent);
+	rTxnAck <=  (RST ? 1'd0 : _rTxnAck);
+	rTxnDoneAck <=  (RST ? 1'd0 : _rTxnDoneAck);
+	rSgErr <=  (RST ? 1'd0 : _rSgErr);
+	rTxReqAck <=  (RST ? 1'd0 : _rTxReqAck);
+	rTxSent <=  (RST ? 1'd0 : _rTxSent);
 end
 
 always @ (*) begin
@@ -199,12 +199,12 @@ end
 // Wait for a NEW_TXN request. Then request transfers until all the data is sent
 // or until the specified length is reached. Then signal TXN_DONE.
 always @ (posedge CLK) begin
-	rMainState <= #1 (RST ? `S_TXPORTWR_MAIN_IDLE : _rMainState);
-	rOffLast <= #1 _rOffLast;
-	rWordsEQ0 <= #1 _rWordsEQ0;
-	rStarted <= #1 _rStarted;
-	rDoneLen <= #1 (RST ? 0 : _rDoneLen);
-	rTxErrd <= #1 (RST ? 1'd0 : _rTxErrd);
+	rMainState <=  (RST ? `S_TXPORTWR_MAIN_IDLE : _rMainState);
+	rOffLast <=  _rOffLast;
+	rWordsEQ0 <=  _rWordsEQ0;
+	rStarted <=  _rStarted;
+	rDoneLen <=  (RST ? 0 : _rDoneLen);
+	rTxErrd <=  (RST ? 1'd0 : _rTxErrd);
 end
 
 always @ (*) begin
@@ -280,35 +280,35 @@ wire [9:0] wLastLen = (NEW_TXN_WORDS_RECVD - rSentWords);
 wire [9:0] wAddrLoInv = ~rAddr[11:2];
 wire [10:0] wPageRem = (wAddrLoInv + 1'd1);	
 always @ (posedge CLK) begin
-	rTxState <= #1 (RST | rSgErr ? `S_TXPORTWR_TX_IDLE : _rTxState);
-	rSentWords <= #1 (rMainState[0] ? 0 : _rSentWords);
-	rWords <= #1 _rWords;
-	rBufWords <= #1 _rBufWords;
-	rBufWordsInit <= #1 _rBufWordsInit;
-	rAddr <= #1 _rAddr;
-	rCarry <= #1 _rCarry;
-	rValsPropagated <= #1 _rValsPropagated;
-	rValsProp <= #1 _rValsProp;
-	rLargeBuf <= #1 _rLargeBuf;
-	rPageRem <= #1 _rPageRem;
-	rPageSpill <= #1 _rPageSpill;
-	rPageSpillInit <= #1 _rPageSpillInit;
-	rCopyBufWords <= #1 _rCopyBufWords;
-	rUseInit <= #1 _rUseInit;
-	rPreLen <= #1 _rPreLen;
-	rMaxPayloadSize <= #1 _rMaxPayloadSize;
-	rMaxPayloadShift <= #1 _rMaxPayloadShift;
-	rMaxPayload <= #1 _rMaxPayload;
-	rPayloadSpill <= #1 _rPayloadSpill;
-	rMaxLen <= #1 (RST ? 1'd1 : _rMaxLen);
-	rLen <= #1 _rLen;
-	rSendingWords <= #1 _rSendingWords;
-	rAvail <= #1 _rAvail;
-	rTxnDone <= #1 _rTxnDone;
-	rLastLen <= #1 _rLastLen;
-	rLastLenEQ0 <= #1 _rLastLenEQ0;
-	rLenEQWords <= #1 _rLenEQWords;
-	rLenEQBufWords <= #1 _rLenEQBufWords;
+	rTxState <=  (RST | rSgErr ? `S_TXPORTWR_TX_IDLE : _rTxState);
+	rSentWords <=  (rMainState[0] ? 0 : _rSentWords);
+	rWords <=  _rWords;
+	rBufWords <=  _rBufWords;
+	rBufWordsInit <=  _rBufWordsInit;
+	rAddr <=  _rAddr;
+	rCarry <=  _rCarry;
+	rValsPropagated <=  _rValsPropagated;
+	rValsProp <=  _rValsProp;
+	rLargeBuf <=  _rLargeBuf;
+	rPageRem <=  _rPageRem;
+	rPageSpill <=  _rPageSpill;
+	rPageSpillInit <=  _rPageSpillInit;
+	rCopyBufWords <=  _rCopyBufWords;
+	rUseInit <=  _rUseInit;
+	rPreLen <=  _rPreLen;
+	rMaxPayloadSize <=  _rMaxPayloadSize;
+	rMaxPayloadShift <=  _rMaxPayloadShift;
+	rMaxPayload <=  _rMaxPayload;
+	rPayloadSpill <=  _rPayloadSpill;
+	rMaxLen <=  (RST ? 1'd1 : _rMaxLen);
+	rLen <=  _rLen;
+	rSendingWords <=  _rSendingWords;
+	rAvail <=  _rAvail;
+	rTxnDone <=  _rTxnDone;
+	rLastLen <=  _rLastLen;
+	rLastLenEQ0 <=  _rLastLenEQ0;
+	rLenEQWords <=  _rLenEQWords;
+	rLenEQBufWords <=  _rLenEQBufWords;
 end
 
 always @ (*) begin
@@ -409,13 +409,13 @@ end
 // Request TX transfers separately so that the TX FSM can continue calculating
 // the next set of request parameters without having to wait for the TX_REQ_ACK.
 always @ (posedge CLK) begin
-	rAckCount <= #1 (RST ? 10'd0 : _rAckCount);
-	rNotRequesting <= #1 (RST ? 1'd1 : _rNotRequesting);
-	rReqAddr <= #1 _rReqAddr;
-	rReqLen <= #1 _rReqLen;
-	rReqLast <= #1 _rReqLast;
-	rDone <= #1 _rDone;
-	rLastDoneRead <= #1 (RST ? 1'd1 : _rLastDoneRead);
+	rAckCount <=  (RST ? 10'd0 : _rAckCount);
+	rNotRequesting <=  (RST ? 1'd1 : _rNotRequesting);
+	rReqAddr <=  _rReqAddr;
+	rReqLen <=  _rReqLen;
+	rReqLast <=  _rReqLast;
+	rDone <=  _rDone;
+	rLastDoneRead <=  (RST ? 1'd1 : _rLastDoneRead);
 end
 
 always @ (*) begin
@@ -460,8 +460,8 @@ end
 // to complete the transaction. The TXN_DONE will let the workstation know it can
 // release the current scatter gather mappings and allocate new ones.
 always @ (posedge CLK) begin
-	rPartialDone <= #1 _rPartialDone;
-	rReqPartialDone <= #1 (RST ? 1'd0 : _rReqPartialDone);
+	rPartialDone <=  _rPartialDone;
+	rReqPartialDone <=  (RST ? 1'd0 : _rReqPartialDone);
 end
 
 always @ (*) begin

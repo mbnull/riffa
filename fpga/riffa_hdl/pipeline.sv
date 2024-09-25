@@ -250,7 +250,7 @@ module reg_pipeline
 
     generate
         for( i = 1 ; i <= C_DEPTH; i = i + 1 ) begin : gen_stages
-            assign #1 wReady[i-1] =  ~rValid[i] | wReady[i];
+            assign  wReady[i-1] =  ~rValid[i] | wReady[i];
 
             // Data Registers
             always @(*) begin
@@ -260,7 +260,7 @@ module reg_pipeline
             // Enable the data register when the corresponding stage is ready
             always @(posedge CLK) begin
                 if(wReady[i-1]) begin
-                    rData[i] <= #1 _rData[i];
+                    rData[i] <=  _rData[i];
                 end
             end
 
@@ -275,7 +275,7 @@ module reg_pipeline
 
             // Always enable the valid registers
             always @(posedge CLK) begin
-                rValid[i] <= #1 _rValid[i];
+                rValid[i] <=  _rValid[i];
             end
 
         end

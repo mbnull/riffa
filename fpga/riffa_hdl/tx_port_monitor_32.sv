@@ -122,7 +122,7 @@ assign DONE = !rState[3]; // !S_TXPORTMON32_READ
 
 // Buffer the input signals that come from outside the tx_port.
 always @ (posedge CLK) begin
-	rTxErr <= #1 (RST ? 1'd0 : _rTxErr);
+	rTxErr <=  (RST ? 1'd0 : _rTxErr);
 end
 
 always @ (*) begin
@@ -132,7 +132,7 @@ end
 
 // Transaction monitoring FSM.
 always @ (posedge CLK) begin
-	rState <= #1 (RST ? `S_TXPORTMON32_NEXT : _rState);
+	rState <=  (RST ? `S_TXPORTMON32_NEXT : _rState);
 end
 
 always @ (*) begin
@@ -181,19 +181,19 @@ end
 
 // Manage reading from the FIFO and tracking amounts read.
 always @ (posedge CLK) begin
-	rRead <= #1 (RST ? 1'd0 : _rRead);
-	rDataValid <= #1 (RST ? {C_VALID_HIST{1'd0}} : _rDataValid);
-	rEvent <= #1 (RST ? 1'd0 : _rEvent);
-	rReadOffLast <= #1 _rReadOffLast;
-	rReadLen <= #1 _rReadLen;
-	rReadCount <= #1 (RST ? 1'd0 : _rReadCount);
-	rWordsRecvd <= #1 _rWordsRecvd;
-	rWordsRecvdAdv <= #1 _rWordsRecvdAdv;
-	rAlmostAllRecvd <= #1 _rAlmostAllRecvd;
-	rAlmostFull <= #1 _rAlmostFull;
-	rLenEQ0Hi <= #1 _rLenEQ0Hi;
-	rLenEQ0Lo <= #1 _rLenEQ0Lo;
-	rLenLE1Lo <= #1 _rLenLE1Lo;
+	rRead <=  (RST ? 1'd0 : _rRead);
+	rDataValid <=  (RST ? {C_VALID_HIST{1'd0}} : _rDataValid);
+	rEvent <=  (RST ? 1'd0 : _rEvent);
+	rReadOffLast <=  _rReadOffLast;
+	rReadLen <=  _rReadLen;
+	rReadCount <=  (RST ? 1'd0 : _rReadCount);
+	rWordsRecvd <=  _rWordsRecvd;
+	rWordsRecvdAdv <=  _rWordsRecvdAdv;
+	rAlmostAllRecvd <=  _rAlmostAllRecvd;
+	rAlmostFull <=  _rAlmostFull;
+	rLenEQ0Hi <=  _rLenEQ0Hi;
+	rLenEQ0Lo <=  _rLenEQ0Lo;
+	rLenLE1Lo <=  _rLenLE1Lo;
 end
 
 always @ (*) begin

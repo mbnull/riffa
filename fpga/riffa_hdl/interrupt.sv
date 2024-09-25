@@ -150,21 +150,21 @@ interrupt_controller intrCtlr (
 // Update the interrupt vector when new signals come in (pulse in) and on reset.
 always @(posedge CLK) begin
 	if (RST) begin
-		rVect0 <= #1 0;
-		rVect1 <= #1 0;
+		rVect0 <=  0;
+		rVect1 <=  0;
 	end 
 	else begin
 		if (VECT_0_RST) begin
-			rVect0 <= #1 (wVect0 | (rVect0 & ~VECT_RST));
-			rVect1 <= #1 (wVect1 | rVect1);
+			rVect0 <=  (wVect0 | (rVect0 & ~VECT_RST));
+			rVect1 <=  (wVect1 | rVect1);
 		end
 		else if (VECT_1_RST) begin
-			rVect0 <= #1 (wVect0 | rVect0);
-			rVect1 <= #1 (wVect1 | (rVect1 & ~VECT_RST));
+			rVect0 <=  (wVect0 | rVect0);
+			rVect1 <=  (wVect1 | (rVect1 & ~VECT_RST));
 		end
 		else begin
-			rVect0 <= #1 (wVect0 | rVect0);
-			rVect1 <= #1 (wVect1 | rVect1);
+			rVect0 <=  (wVect0 | rVect0);
+			rVect1 <=  (wVect1 | rVect1);
 		end
 	end
 end	
@@ -172,14 +172,14 @@ end
 // Fire the interrupt when we have a non-zero vector.
 always @(posedge CLK) begin
 	if (RST) begin
-		rState <= #1 `S_INTR_IDLE;
+		rState <=  `S_INTR_IDLE;
 	end
 	else begin
 		case (rState)
-		`S_INTR_IDLE :	rState <= #1 ((rVect0 | rVect1) == 0 ? `S_INTR_IDLE : `S_INTR_INTR);
-		`S_INTR_INTR :	rState <= #1 (wIntrDone ? `S_INTR_CLR_0 : `S_INTR_INTR);
-		`S_INTR_CLR_0 :	rState <= #1 (VECT_0_RST ? (C_NUM_CHNL > 6 ? `S_INTR_CLR_1 : `S_INTR_IDLE) : `S_INTR_CLR_0);
-		`S_INTR_CLR_1 :	rState <= #1 (VECT_1_RST ? `S_INTR_IDLE : `S_INTR_CLR_1);
+		`S_INTR_IDLE :	rState <=  ((rVect0 | rVect1) == 0 ? `S_INTR_IDLE : `S_INTR_INTR);
+		`S_INTR_INTR :	rState <=  (wIntrDone ? `S_INTR_CLR_0 : `S_INTR_INTR);
+		`S_INTR_CLR_0 :	rState <=  (VECT_0_RST ? (C_NUM_CHNL > 6 ? `S_INTR_CLR_1 : `S_INTR_IDLE) : `S_INTR_CLR_0);
+		`S_INTR_CLR_1 :	rState <=  (VECT_1_RST ? `S_INTR_IDLE : `S_INTR_CLR_1);
 		endcase
 	end
 end	

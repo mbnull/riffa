@@ -199,14 +199,14 @@ module tx_multiplexer_64
 
     // Buffer shift-selected channel request signals and FIFO data.
     always @ (posedge CLK) begin
-        rRdChnl <= #1 _rRdChnl;
-        rRdAddr <= #1 _rRdAddr;
-        rRdLen <= #1 _rRdLen;
-        rRdSgChnl <= #1 _rRdSgChnl;
-        rWrChnl <= #1 _rWrChnl;
-        rWrAddr <= #1 _rWrAddr;
-        rWrLen <= #1 _rWrLen;
-        rWrData <= #1 _rWrData;
+        rRdChnl <=  _rRdChnl;
+        rRdAddr <=  _rRdAddr;
+        rRdLen <=  _rRdLen;
+        rRdSgChnl <=  _rRdSgChnl;
+        rWrChnl <=  _rWrChnl;
+        rWrAddr <=  _rWrAddr;
+        rWrLen <=  _rWrLen;
+        rWrData <=  _rWrData;
     end
 
     always @ (*) begin
@@ -226,18 +226,18 @@ module tx_multiplexer_64
     // acknowledge the receipt to the channel so it can deassert the 
     // request, and let the selector choose another channel.
     always @ (posedge CLK) begin
-        rCapState <= #1 (RST_IN ? `S_TXENGUPR64_CAP_RD_WR : _rCapState);
-        rRdAck <= #1 (RST_IN ? {C_NUM_CHNL{1'd0}} : _rRdAck);
-        rWrAck <= #1 (RST_IN ? {C_NUM_CHNL{1'd0}} : _rWrAck);
-        rIsWr <= #1 _rIsWr;
-        rCapChnl <= #1 _rCapChnl;
-        rCapAddr <= #1 _rCapAddr;
-        rCapAddr64 <= #1 _rCapAddr64;
-        rCapLen <= #1 _rCapLen;
-        rCapIsWr <= #1 _rCapIsWr;
-        rExtTagReq <= #1 _rExtTagReq;
-        rExtTag <= #1 _rExtTag;
-        rTxEngRdReqAck <= #1 _rTxEngRdReqAck;
+        rCapState <=  (RST_IN ? `S_TXENGUPR64_CAP_RD_WR : _rCapState);
+        rRdAck <=  (RST_IN ? {C_NUM_CHNL{1'd0}} : _rRdAck);
+        rWrAck <=  (RST_IN ? {C_NUM_CHNL{1'd0}} : _rWrAck);
+        rIsWr <=  _rIsWr;
+        rCapChnl <=  _rCapChnl;
+        rCapAddr <=  _rCapAddr;
+        rCapAddr64 <=  _rCapAddr64;
+        rCapLen <=  _rCapLen;
+        rCapIsWr <=  _rCapIsWr;
+        rExtTagReq <=  _rExtTagReq;
+        rExtTag <=  _rExtTag;
+        rTxEngRdReqAck <=  _rTxEngRdReqAck;
     end
 
     always @ (*) begin
@@ -307,17 +307,17 @@ module tx_multiplexer_64
     // Start the read/write when space is available in the output FIFO and when
     // request parameters have been captured (i.e. a pending request).
     always @ (posedge CLK) begin
-        rMainState <= #1 (RST_IN ? `S_TXENGUPR64_MAIN_IDLE : _rMainState);
-        rCountIsWr <= #1 _rCountIsWr;
-        rCountLen <= #1 _rCountLen;
-        rCount <= #1 _rCount;
-        rCountDone <= #1 _rCountDone;
-        rCountStart <= #1 _rCountStart;
-        rCountChnl <= #1 _rCountChnl;
-        rCountTag <= #1 _rCountTag;
-        rCountOdd32 <= #1 _rCountOdd32;
-        rWrDataRen <= #1 _rWrDataRen;
-        rCountValid <= #1 RST_IN ? 0 : _rCountValid;
+        rMainState <=  (RST_IN ? `S_TXENGUPR64_MAIN_IDLE : _rMainState);
+        rCountIsWr <=  _rCountIsWr;
+        rCountLen <=  _rCountLen;
+        rCount <=  _rCount;
+        rCountDone <=  _rCountDone;
+        rCountStart <=  _rCountStart;
+        rCountChnl <=  _rCountChnl;
+        rCountTag <=  _rCountTag;
+        rCountOdd32 <=  _rCountOdd32;
+        rWrDataRen <=  _rWrDataRen;
+        rCountValid <=  RST_IN ? 0 : _rCountValid;
     end
 
     always @ (*) begin
@@ -379,14 +379,14 @@ module tx_multiplexer_64
     // This pipeline will keep the formatter busy.
     assign wCountChnl = rChnl[(C_DATA_DELAY-2)*4 +:4];
     always @ (posedge CLK) begin
-        rWnR <= #1 _rWnR;
-        rChnl <= #1 _rChnl;
-        rTag <= #1 _rTag;
-        rAddr <= #1 _rAddr;
-        rLen <= #1 _rLen;
-        rValid <= #1 _rValid;
-        rDone <= #1 _rDone;
-        rStart <= #1 _rStart;
+        rWnR <=  _rWnR;
+        rChnl <=  _rChnl;
+        rTag <=  _rTag;
+        rAddr <=  _rAddr;
+        rLen <=  _rLen;
+        rValid <=  _rValid;
+        rDone <=  _rDone;
+        rStart <=  _rStart;
     end
 
     always @ (*) begin

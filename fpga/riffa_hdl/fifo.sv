@@ -108,7 +108,7 @@ module fifo
     assign RD_VALID = rValid;
 
     always @ (posedge CLK) begin
-        rEmpty <= #1 (RST ? 1'd1 : _rEmpty);
+        rEmpty <=  (RST ? 1'd1 : _rEmpty);
     end
 
     always @ (*) begin
@@ -117,20 +117,20 @@ module fifo
 
     always @(posedge CLK) begin
         if(RST) begin
-            rValid <= #1 0;
+            rValid <=  0;
         end else if(wRdEn | wRdRdy) begin
-            rValid <= #1 ~(wEmptyNow);
+            rValid <=  ~(wEmptyNow);
         end
     end
 
     // Write pointer logic.
     always @ (posedge CLK) begin
         if (RST) begin
-            rWrPtr <= #1 0;
-            rWrPtrPlus1 <= #1 1;
+            rWrPtr <=  0;
+            rWrPtrPlus1 <=  1;
         end else begin
-            rWrPtr <= #1 _rWrPtr;
-            rWrPtrPlus1 <= #1 _rWrPtrPlus1;
+            rWrPtr <=  _rWrPtr;
+            rWrPtrPlus1 <=  _rWrPtrPlus1;
         end
     end
 
@@ -147,11 +147,11 @@ module fifo
     // Read pointer logic.
     always @ (posedge CLK) begin
         if (RST) begin
-            rRdPtr <= #1 0;
-            rRdPtrPlus1 <= #1 1;
+            rRdPtr <=  0;
+            rRdPtrPlus1 <=  1;
         end else begin
-            rRdPtr <= #1 _rRdPtr;
-            rRdPtrPlus1 <= #1 _rRdPtrPlus1;
+            rRdPtr <=  _rRdPtr;
+            rRdPtrPlus1 <=  _rRdPtrPlus1;
         end
     end
 
@@ -170,7 +170,7 @@ module fifo
     assign WR_READY = ~rFull;
 
     always @ (posedge CLK) begin
-        rFull <= #1 (RST ? 1'd0 : _rFull);
+        rFull <=  (RST ? 1'd0 : _rFull);
     end
 
     always @ (*) begin

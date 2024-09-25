@@ -144,97 +144,97 @@ module reorder_queue_output #(
    // Output completed data in increasing tag order, avoid stalls if possible
    always @ (posedge CLK) begin
       if (RST) begin
-	      rState <= #1 0;
-	      rTag <= #1 0;
-	      rDataAddr <= #1 0;
-	      rDone <= #1 0;
-	      rErr <= #1 0;
-	      rDE <= #1 0;
-	      rClear <= #1 0;
-	      rTagFinished <= #1 0;
+	      rState <=  0;
+	      rTag <=  0;
+	      rDataAddr <=  0;
+	      rDone <=  0;
+	      rErr <=  0;
+	      rDE <=  0;
+	      rClear <=  0;
+	      rTagFinished <=  0;
           rShift <= 0; // Added
       end
       else begin
-	 rTagFinished <= #1 TAG_FINISHED[rTag];
+	 rTagFinished <=  TAG_FINISHED[rTag];
 	 case (rState)
 	   
 	   2'd0: begin // Request initial data and final info, output nothing
-	      rDone <= #1 0;
-	      rErr <= #1 0;
-	      rDE <= #1 0;
-	      rClear <= #1 0;
+	      rDone <=  0;
+	      rErr <=  0;
+	      rDE <=  0;
+	      rClear <=  0;
 	      if (rTagFinished) begin
-		 rTag <= #1 wTagNext;
-		 rTagCurr <= #1 rTag;
-		 rDataAddr <= #1 rDataAddr + 1'd1;
-		 rState <= #1 2'd2;
+		 rTag <=  wTagNext;
+		 rTagCurr <=  rTag;
+		 rDataAddr <=  rDataAddr + 1'd1;
+		 rState <=  2'd2;
 	      end
 	      else begin
-		 rState <= #1 2'd0;
+		 rState <=  2'd0;
 	      end
 	   end
 
 	   2'd1: begin // Request initial data and final info, output last data
-	      rDone <= #1 rDoneLast;
-	      rErr <= #1 rErrLast;
-	      rDE <= #1 rWords[C_PCI_DATA_COUNT_WIDTH-1:0];
-	      rClear <= #1 1<<rTagCurr; // Clear the tag
+	      rDone <=  rDoneLast;
+	      rErr <=  rErrLast;
+	      rDE <=  rWords[C_PCI_DATA_COUNT_WIDTH-1:0];
+	      rClear <=  1<<rTagCurr; // Clear the tag
 	      if (rTagFinished) begin
-		 rTag <= #1 wTagNext;
-		 rTagCurr <= #1 rTag;
-		 rDataAddr <= #1 rDataAddr + 1'd1;
-		 rState <= #1 2'd2;
+		 rTag <=  wTagNext;
+		 rTagCurr <=  rTag;
+		 rDataAddr <=  rDataAddr + 1'd1;
+		 rState <=  2'd2;
 	      end
 	      else begin
-		 rState <= #1 2'd0;
+		 rState <=  2'd0;
 	      end
 	   end
 
 	   2'd2: begin // Initial data now available, output data
-	      rShift <= #1 TAG_MAPPED;
-	      rDoneLast <= #1 PKT_DONE;
-	      rErrLast <= #1 PKT_ERR;
-	      rWords <= #1 PKT_WORDS - C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
-	      rLTE2Pkts <= #1 (PKT_WORDS <= (C_PCI_DATA_WORD*3));
+	      rShift <=  TAG_MAPPED;
+	      rDoneLast <=  PKT_DONE;
+	      rErrLast <=  PKT_ERR;
+	      rWords <=  PKT_WORDS - C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
+	      rLTE2Pkts <=  (PKT_WORDS <= (C_PCI_DATA_WORD*3));
 	      if (PKT_WORDS_LTE1) begin // Guessed wrong, no addl data, need to reset
-		 rDone <= #1 PKT_DONE;
-		 rErr <= #1 PKT_ERR;
-		 rDE <= #1 PKT_WORDS[C_PCI_DATA_COUNT_WIDTH-1:0];
-		 rClear <= #1 1<<rTagCurr; // Clear the tag
-		 rDataAddr <= #1 rTag<<C_DATA_ADDR_STRIDE_WIDTH; // rTag is already on the next
-		 rState <= #1 2'd0;
+		 rDone <=  PKT_DONE;
+		 rErr <=  PKT_ERR;
+		 rDE <=  PKT_WORDS[C_PCI_DATA_COUNT_WIDTH-1:0];
+		 rClear <=  1<<rTagCurr; // Clear the tag
+		 rDataAddr <=  rTag<<C_DATA_ADDR_STRIDE_WIDTH; // rTag is already on the next
+		 rState <=  2'd0;
 	      end
 	      else if (PKT_WORDS_LTE2) begin // Guessed right, end of data, output last and continue
-		 rDone <= #1 0;
-		 rErr <= #1 0;
-		 rDE <= #1 C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
-		 rClear <= #1 0;
-		 rDataAddr <= #1 rTag<<C_DATA_ADDR_STRIDE_WIDTH; // rTag is already on the next
-		 rState <= #1 2'd1;
+		 rDone <=  0;
+		 rErr <=  0;
+		 rDE <=  C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
+		 rClear <=  0;
+		 rDataAddr <=  rTag<<C_DATA_ADDR_STRIDE_WIDTH; // rTag is already on the next
+		 rState <=  2'd1;
 	      end
 	      else begin // Guessed right, more data, output it and continue
-		 rDone <= #1 0;
-		 rErr <= #1 0;
-		 rDE <= #1 C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
-		 rClear <= #1 0;
-		 rDataAddr <= #1 rDataAddr + 1'd1;
-		 rState <= #1 2'd3;
+		 rDone <=  0;
+		 rErr <=  0;
+		 rDE <=  C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
+		 rClear <=  0;
+		 rDataAddr <=  rDataAddr + 1'd1;
+		 rState <=  2'd3;
 	      end
 	   end
 
 	   2'd3: begin // Next data now available, output data
-	      rDone <= #1 0;
-	      rErr <= #1 0;
-	      rDE <= #1 C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
-	      rWords <= #1 rWords - C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
-	      rLTE2Pkts <= #1 (rWords <= (C_PCI_DATA_WORD*3));
+	      rDone <=  0;
+	      rErr <=  0;
+	      rDE <=  C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
+	      rWords <=  rWords - C_PCI_DATA_WORD[C_PCI_DATA_WORD_WIDTH:0];
+	      rLTE2Pkts <=  (rWords <= (C_PCI_DATA_WORD*3));
 	      if (rLTE2Pkts) begin // End of data, output last and continue
-		 rDataAddr <= #1 rTag<<C_DATA_ADDR_STRIDE_WIDTH; // rTag is already on the next
-		 rState <= #1 2'd1;
+		 rDataAddr <=  rTag<<C_DATA_ADDR_STRIDE_WIDTH; // rTag is already on the next
+		 rState <=  2'd1;
 	      end
 	      else begin // More data, output it and continue
-		 rDataAddr <= #1 rDataAddr + 1'd1;
-		 rState <= #1 2'd3;
+		 rDataAddr <=  rDataAddr + 1'd1;
+		 rState <=  2'd3;
 	      end
 	   end
 
@@ -245,17 +245,17 @@ module reorder_queue_output #(
 
    // Output the data
    always @ (posedge CLK) begin
-      rData <= #1 DATA;
-      rDataOut <= #1 rData;
+      rData <=  DATA;
+      rDataOut <=  rData;
       if (RST) begin
-	 rDEOut <= #1 0;
-	 rDoneOut <= #1 0;
-	 rErrOut <= #1 0;
+	 rDEOut <=  0;
+	 rDoneOut <=  0;
+	 rErrOut <=  0;
       end
       else begin
-	 rDEOut <= #1 rDE<<(C_PCI_DATA_COUNT_WIDTH*rShift);
-	 rDoneOut <= #1 (rDone | rErr)<<rShift;
-	 rErrOut <= #1 rErr<<rShift;
+	 rDEOut <=  rDE<<(C_PCI_DATA_COUNT_WIDTH*rShift);
+	 rDoneOut <=  (rDone | rErr)<<rShift;
+	 rErrOut <=  rErr<<rShift;
       end
    end
 

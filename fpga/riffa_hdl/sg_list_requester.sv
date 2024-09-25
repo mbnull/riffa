@@ -134,10 +134,10 @@ assign RX_REQ = rState[4]; // S_SGREQ_ISSUE
 
 // Buffer signals coming from outside the rx_port.
 always @ (posedge CLK) begin
-	rData <= #1 _rData;
-	rAddrHiValid <= #1 _rAddrHiValid;
-	rAddrLoValid <= #1 _rAddrLoValid;
-	rLenValid <= #1 _rLenValid;
+	rData <=  _rData;
+	rAddrHiValid <=  _rAddrHiValid;
+	rAddrLoValid <=  _rAddrLoValid;
+	rLenValid <=  _rLenValid;
 end
 
 always @ (*) begin
@@ -151,24 +151,24 @@ end
 // Handle requesting the next scatter gather buffer data.
 wire [9:0] wAddrLoInv = ~rAddr[11:2];
 always @ (posedge CLK) begin
-	rState <= #1 (RST ? `S_SGREQ_IDLE : _rState);
-	rDone <= #1 (RST ? 1'd0 : _rDone);
-	rDelay <= #1 _rDelay;
-	rAddr <= #1 _rAddr;
-	rCarry <= #1 _rCarry;
-	rBufWords <= #1 _rBufWords;
-	rValsProp <= #1 _rValsProp;
-	rPageRem <= #1 _rPageRem;
-	rPageSpill <= #1 _rPageSpill;
-	rPreLen <= #1 _rPreLen;
-	rMaxPayloadTrain <= #1 _rMaxPayloadTrain;
-	rMaxPayloadShift <= #1 _rMaxPayloadShift;
-	rMaxPayload <= #1 _rMaxPayload;
-	rPayloadSpill <= #1 _rPayloadSpill;
-	rLen <= #1 _rLen;
-	rBufWordsEQ0Hi <= #1 _rBufWordsEQ0Hi;
-	rBufWordsEQ0Lo <= #1 _rBufWordsEQ0Lo;
-	rUserRst <= #1 (RST ? 1'd0 : _rUserRst);
+	rState <=  (RST ? `S_SGREQ_IDLE : _rState);
+	rDone <=  (RST ? 1'd0 : _rDone);
+	rDelay <=  _rDelay;
+	rAddr <=  _rAddr;
+	rCarry <=  _rCarry;
+	rBufWords <=  _rBufWords;
+	rValsProp <=  _rValsProp;
+	rPageRem <=  _rPageRem;
+	rPageSpill <=  _rPageSpill;
+	rPreLen <=  _rPreLen;
+	rMaxPayloadTrain <=  _rMaxPayloadTrain;
+	rMaxPayloadShift <=  _rMaxPayloadShift;
+	rMaxPayload <=  _rMaxPayload;
+	rPayloadSpill <=  _rPayloadSpill;
+	rLen <=  _rLen;
+	rBufWordsEQ0Hi <=  _rBufWordsEQ0Hi;
+	rBufWordsEQ0Lo <=  _rBufWordsEQ0Lo;
+	rUserRst <=  (RST ? 1'd0 : _rUserRst);
 end
 
 always @ (*) begin
@@ -255,8 +255,8 @@ end
 // Keep track of requests made and requests completed so we know when all
 // the outstanding data has been received.
 always @ (posedge CLK) begin
-	rAckCount <= #1 (RST ? 10'd0 : _rAckCount);
-	rRecvdAll <= #1 _rRecvdAll;
+	rAckCount <=  (RST ? 10'd0 : _rAckCount);
+	rRecvdAll <=  _rRecvdAll;
 end
 
 always @ (*) begin

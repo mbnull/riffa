@@ -93,10 +93,10 @@ module tx_port_channel_gate_32
 
     // Buffer the input signals that come from outside the tx_port.
     always @ (posedge CHNL_CLK) begin
-        rChnlTx <= #1 (RST ? 1'd0 : _rChnlTx);
-        rChnlLast <= #1 _rChnlLast;
-        rChnlLen <= #1 _rChnlLen;
-        rChnlOff <= #1 _rChnlOff;
+        rChnlTx <=  (RST ? 1'd0 : _rChnlTx);
+        rChnlLast <=  _rChnlLast;
+        rChnlLen <=  _rChnlLen;
+        rChnlOff <=  _rChnlOff;
     end
 
     always @ (*) begin
@@ -126,13 +126,13 @@ module tx_port_channel_gate_32
     // Pass the transaction open event, transaction data, and the transaction
     // close event through to the RD_CLK domain via the async_fifo.
     always @ (posedge CHNL_CLK) begin
-        rState <= #1 (RST ? `S_TXPORTGATE32_IDLE : _rState);
-        rFifoWen <= #1 (RST ? 1'd0 : _rFifoWen);
-        rFifoData <= #1 _rFifoData;
-        rAck <= #1 (RST ? 1'd0 : _rAck);
-        rPause <= #1 (RST ? 1'd0 : _rPause);
-        rClosed <= #1 (RST ? 1'd0 : _rClosed);
-        rOpen <= #1 (RST ? 1'd0 : _rOpen);
+        rState <=  (RST ? `S_TXPORTGATE32_IDLE : _rState);
+        rFifoWen <=  (RST ? 1'd0 : _rFifoWen);
+        rFifoData <=  _rFifoData;
+        rAck <=  (RST ? 1'd0 : _rAck);
+        rPause <=  (RST ? 1'd0 : _rPause);
+        rClosed <=  (RST ? 1'd0 : _rClosed);
+        rOpen <=  (RST ? 1'd0 : _rOpen);
     end
 
     always @ (*) begin

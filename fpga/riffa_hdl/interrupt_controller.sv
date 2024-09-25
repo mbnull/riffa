@@ -146,9 +146,9 @@ end
 // Update the state.
 always @(posedge CLK) begin
 	if (RST)
-		rState <= #1 `S_INTRCTLR_IDLE;
+		rState <=  `S_INTRCTLR_IDLE;
 	else
-		rState <= #1 rStateNext;
+		rState <=  rStateNext;
 end
 
 endmodule

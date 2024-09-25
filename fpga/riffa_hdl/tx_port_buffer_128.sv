@@ -99,8 +99,8 @@ assign RD_DATA = rData[0 +:C_FIFO_DATA_WIDTH];
 
 // Buffer the input signals that come from outside the tx_port.
 always @ (posedge CLK) begin
-	rLenValid <= #1 (RST ? 1'd0 : _rLenValid);
-	rRen <= #1 (RST ? 1'd0 : _rRen);
+	rLenValid <=  (RST ? 1'd0 : _rLenValid);
+	rRen <=  (RST ? 1'd0 : _rRen);
 end
 
 always @ (*) begin
@@ -136,15 +136,15 @@ wire wAfterEnd = (!rRen & rRdEnHist[0]);
 wire [2:0] wConsumed = ({(rRdEnHist[0] | (!rRdEnHist[0] & rRdEnHist[1] & rLenLastHist[0])),2'd0}) - ({2{wAfterEnd}} & wLenLSB);
 
 always @ (posedge CLK) begin
-	rCount <= #1 (RST ? 2'd0 : _rCount);
-	rCountHist <= #1 _rCountHist;
-	rRdEnHist <= #1 (RST ? {C_RD_EN_HIST{1'd0}} : _rRdEnHist);
-	rFifoRdEn <= #1 (RST ? 1'd0 : _rFifoRdEn);
-	rFifoRdEnHist <= #1 (RST ? {C_FIFO_RD_EN_HIST{1'd0}} : _rFifoRdEnHist);
-	rConsumedHist <= #1 _rConsumedHist;
-	rLenLastHist <= #1 (RST ? {C_LEN_LAST_HIST{1'd0}} : _rLenLastHist);
-	rFifoData <= #1 _rFifoData;
-	rData <= #1 _rData;
+	rCount <=  (RST ? 2'd0 : _rCount);
+	rCountHist <=  _rCountHist;
+	rRdEnHist <=  (RST ? {C_RD_EN_HIST{1'd0}} : _rRdEnHist);
+	rFifoRdEn <=  (RST ? 1'd0 : _rFifoRdEn);
+	rFifoRdEnHist <=  (RST ? {C_FIFO_RD_EN_HIST{1'd0}} : _rFifoRdEnHist);
+	rConsumedHist <=  _rConsumedHist;
+	rLenLastHist <=  (RST ? {C_LEN_LAST_HIST{1'd0}} : _rLenLastHist);
+	rFifoData <=  _rFifoData;
+	rData <=  _rData;
 end
 
 always @ (*) begin
@@ -182,11 +182,11 @@ end
 // Buffer up to 4 length LSB values for use to detect unread data that was
 // part of a consumed packet. Should only need 2. This is basically a FIFO.
 always @ (posedge CLK) begin
-	rRdPtr <= #1 (RST ? 2'd0 : _rRdPtr);
-	rWrPtr <= #1 (RST ? 2'd0 : _rWrPtr);
-	rLenLSB0 <= #1 _rLenLSB0;
-	rLenLSB1 <= #1 _rLenLSB1;
-	rLenLast <= #1 _rLenLast;
+	rRdPtr <=  (RST ? 2'd0 : _rRdPtr);
+	rWrPtr <=  (RST ? 2'd0 : _rWrPtr);
+	rLenLSB0 <=  _rLenLSB0;
+	rLenLSB1 <=  _rLenLSB1;
+	rLenLast <=  _rLenLast;
 end
 
 always @ (*) begin

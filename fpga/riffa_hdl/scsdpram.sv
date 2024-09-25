@@ -71,10 +71,10 @@ module scsdpram
 
     always @(posedge CLK) begin
         if (WR1_EN) begin
-            rMemory[WR1_ADDR] <= #1 WR1_DATA;
+            rMemory[WR1_ADDR] <=  WR1_DATA;
         end
         if(RD1_EN) begin
-            rDataOut <= #1 rMemory[RD1_ADDR];
+            rDataOut <=  rMemory[RD1_ADDR];
         end
     end   
 endmodule

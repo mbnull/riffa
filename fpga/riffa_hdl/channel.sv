@@ -269,7 +269,7 @@ module channel
                  .CHNL_TX_OFF               (CHNL_TX_OFF[30:0]),
                  .CHNL_TX_DATA              (CHNL_TX_DATA[C_DATA_WIDTH-1:0]),
                  .CHNL_TX_DATA_VALID        (CHNL_TX_DATA_VALID));
-        end else if(C_DATA_WIDTH == 128) begin
+        end else if(C_DATA_WIDTH == 256) begin
             channel_128
                 #(
                   .C_DATA_WIDTH(C_DATA_WIDTH), 

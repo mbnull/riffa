@@ -219,16 +219,16 @@ assign RD_PTR_P1 = rRdPtrP1;
 // Gray coded pointer
 always @(posedge RD_CLK or posedge RD_RST) begin
 	if (RD_RST) begin
-		rBin <= #1 0;
-		rBinP1 <= #1 1;
-		rRdPtr <= #1 0;
-		rRdPtrP1 <= #1 0;
+		rBin <=  0;
+		rBinP1 <=  1;
+		rRdPtr <=  0;
+		rRdPtrP1 <=  0;
 	end
 	else begin
-		rBin <= #1 wBinNext;
-		rBinP1 <= #1 wBinNextP1;
-		rRdPtr <= #1 wGrayNext;
-		rRdPtrP1 <= #1 wGrayNextP1;
+		rBin <=  wBinNext;
+		rBinP1 <=  wBinNextP1;
+		rRdPtr <=  wGrayNext;
+		rRdPtrP1 <=  wGrayNextP1;
 	end
 end
 
@@ -240,9 +240,9 @@ assign wGrayNextP1 = ((wBinNextP1>>1) ^ wBinNextP1); // binary-to-gray conversio
 
 always @(posedge RD_CLK) begin
 	if (CMP_EMPTY)
-		{rEmpty, rEmpty2} <= #1 2'b11;
+		{rEmpty, rEmpty2} <=  2'b11;
 	else
-		{rEmpty, rEmpty2} <= #1 {rEmpty2, CMP_EMPTY};
+		{rEmpty, rEmpty2} <=  {rEmpty2, CMP_EMPTY};
 end
 
 endmodule
@@ -279,16 +279,16 @@ assign WR_PTR_P1 = rPtrP1;
 // Gray coded pointer
 always @(posedge WR_CLK or posedge WR_RST) begin
 	if (WR_RST) begin
-		rBin <= #1 0;
-		rBinP1 <= #1 1;
-		rPtr <= #1 0;
-		rPtrP1 <= #1 0;
+		rBin <=  0;
+		rBinP1 <=  1;
+		rPtr <=  0;
+		rPtrP1 <=  0;
 	end
 	else begin
-		rBin <= #1 wBinNext;
-		rBinP1 <= #1 wBinNextP1;
-		rPtr <= #1 wGrayNext;
-		rPtrP1 <= #1 wGrayNextP1;
+		rBin <=  wBinNext;
+		rBinP1 <=  wBinNextP1;
+		rPtr <=  wGrayNext;
+		rPtrP1 <=  wGrayNextP1;
 	end
 end
 
@@ -300,11 +300,11 @@ assign wGrayNextP1 = ((wBinNextP1>>1) ^ wBinNextP1); // binary-to-gray conversio
 
 always @(posedge WR_CLK) begin
 	if (WR_RST) 
-		{rFull, rFull2} <= #1 2'b00;
+		{rFull, rFull2} <=  2'b00;
 	else if (CMP_FULL) 
-		{rFull, rFull2} <= #1 2'b11;
+		{rFull, rFull2} <=  2'b11;
 	else
-		{rFull, rFull2} <= #1 {rFull2, CMP_FULL};
+		{rFull, rFull2} <=  {rFull2, CMP_FULL};
 end
 
 endmodule

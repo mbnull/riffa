@@ -51,7 +51,9 @@ module GW5AST_wrapper    #( // Number of RIFFA Channels
     output                                       msi_en,
     output                                       msi_req,
     output                                       msinum,
-    input                                        msi_ack
+    input                                        msi_ack,
+    input                                        clk,
+    input                                        rst_n
 );
 
 
@@ -63,9 +65,6 @@ module GW5AST_wrapper    #( // Number of RIFFA Channels
     localparam C_PIPELINE_OUTPUT = 1;
     localparam C_PIPELINE_INPUT = 1;
 
-
-    wire                                          clk;
-    wire                                          rst_in;
     wire                                          done_txc_rst;
     wire                                          done_txr_rst;
     wire                                          done_rxr_rst;
@@ -285,7 +284,7 @@ module GW5AST_wrapper    #( // Number of RIFFA Channels
         .RX_TLP_READY                  (rx_tlp_ready),
         // Inputs
         .CLK_BUS                       (clk),
-        .RST_BUS                       (rst_in),
+        .RST_BUS                       (rst_n),
 
         .CONFIG_COMPLETER_ID           (config_completer_id[`SIG_CPLID_W-1:0]),
 
@@ -477,7 +476,7 @@ module GW5AST_wrapper    #( // Number of RIFFA Channels
 
         .DONE_TXC_RST                  (done_txc_rst),
         .DONE_TXR_RST                  (done_txr_rst),
-        .RST_BUS                       (rst_in),
+        .RST_BUS                       (rst_n),
         /*AUTOINST*/
         // Outputs
         .RST_OUT                       (RST_OUT),
@@ -531,7 +530,7 @@ module GW5AST_wrapper    #( // Number of RIFFA Channels
         .INTR_MSI_RDY                  (intr_msi_rdy),
         // Inputs
         .CLK                           (clk),
-        .RST_IN                        (rst_in),
+        .RST_IN                        (rst_n),
         .RX_TLP_READY                  (rx_tlp_ready),
         .TX_TLP                        (tx_tlp[C_PCI_DATA_WIDTH-1:0]),
         .TX_TLP_VALID                  (tx_tlp_valid),

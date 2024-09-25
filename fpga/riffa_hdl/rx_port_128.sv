@@ -189,9 +189,9 @@ assign SG_ERR = (wPackedSgTxDone & wPackedSgTxErr);
 
 // Generate a wide reset from the input reset.
 always @ (posedge CLK) begin
-	rRst <= #1 rWideRst[4]; 
+	rRst <=  rWideRst[4]; 
 	if (RST) 
-		rWideRst <= #1 5'b11111;
+		rWideRst <=  5'b11111;
 	else 
 		rWideRst <= (rWideRst<<1);
 end
@@ -442,9 +442,9 @@ rx_port_channel_gate #(.C_DATA_WIDTH(C_DATA_WIDTH)) gate (
 reg [31:0] rCounter=0;
 always @ (posedge CLK) begin
 	if (RST)
-		rCounter <= #1 0;
+		rCounter <=  0;
 	else
-		rCounter <= #1 (RX_REQ_ACK ? rCounter + 1 : rCounter);
+		rCounter <=  (RX_REQ_ACK ? rCounter + 1 : rCounter);
 end
 
 

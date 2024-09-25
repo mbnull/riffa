@@ -743,13 +743,13 @@ module tx_arbiter
 
     always @(posedge CLK) begin
         if(RST_IN) begin
-            rTxcCounter <= #1 0;
-            rTxcActive  <= #1 0;
-            rTxcLast    <= #1 0;
+            rTxcCounter <=  0;
+            rTxcActive  <=  0;
+            rTxcLast    <=  0;
         end else begin
-            rTxcCounter <= #1  _rTxcCounter;
-            rTxcActive  <= #1  _rTxcActive;
-            rTxcLast    <= #1  _rTxcLast;
+            rTxcCounter <=   _rTxcCounter;
+            rTxcActive  <=   _rTxcActive;
+            rTxcLast    <=   _rTxcLast;
         end
     end
 
@@ -782,13 +782,13 @@ module tx_arbiter
     
     always @(posedge CLK) begin
         if(RST_IN) begin
-            rTxrCounter <= #1 0;
-            rTxrActive  <= #1 0;
-            rTxrLast    <= #1 0;
+            rTxrCounter <=  0;
+            rTxrActive  <=  0;
+            rTxrLast    <=  0;
         end else begin
-            rTxrCounter <= #1 _rTxrCounter;
-            rTxrActive  <= #1 _rTxrActive;
-            rTxrLast    <= #1 _rTxrLast;
+            rTxrCounter <=  _rTxrCounter;
+            rTxrActive  <=  _rTxrActive;
+            rTxrLast    <=  _rTxrLast;
         end
     end
 
@@ -815,9 +815,9 @@ module tx_arbiter
     
     always @(posedge CLK) begin
         if(RST_IN) begin
-            rArbState <= #1 S_TXARB_PRIORITY;
+            rArbState <=  S_TXARB_PRIORITY;
         end else begin
-            rArbState <= #1 _rArbState;
+            rArbState <=  _rArbState;
         end
     end
     

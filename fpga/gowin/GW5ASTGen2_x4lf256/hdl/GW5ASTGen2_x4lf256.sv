@@ -70,7 +70,7 @@ module GW5ASTGen2_x4lf256
         .PCIE_Controller_Top_pcie_tl_int_status_i(msi_en), //input PCIE_Controller_Top_pcie_tl_int_status_i
         .PCIE_Controller_Top_pcie_tl_int_req_i(msi_req), //input PCIE_Controller_Top_pcie_tl_int_req_i
         .PCIE_Controller_Top_pcie_tl_int_msinum_i(msinum), //input [4:0] PCIE_Controller_Top_pcie_tl_int_msinum_i
-        .PCIE_Controller_Top_pcie_tl_int_ack_o(msi_ack), //output PCIE_Controller_Top_pcie_tl_int_ack_o
+        .PCIE_Controller_Top_pcie_tl_int_ack_o(msi_ack) //output PCIE_Controller_Top_pcie_tl_int_ack_o
     );
 
     wire                               rst_out;
@@ -138,12 +138,11 @@ module GW5ASTGen2_x4lf256
         .msi_en(msi_en),
         .msi_req(msi_req),
         .msinum(msinum),
-        .msi_ack(msi_ack)
+        .msi_ack(msi_ack),
+        .clk(clk),
+        .rst_n(rst_n)
     );
 
-    genvar                                     chnl;
-    generate
-        for (chnl = 0; chnl < C_NUM_CHNL; chnl = chnl + 1) begin : test_channels
             chnl_tester 
                     #(
                       .C_PCI_DATA_WIDTH(C_PCI_DATA_WIDTH)
@@ -152,26 +151,24 @@ module GW5ASTGen2_x4lf256
                     (.CLK(clk),
                      .RST(rst_out),    // riffa_reset includes riffa_endpoint resets
                      // Rx interface
-                     .CHNL_RX_CLK(chnl_rx_clk[chnl]), 
-                     .CHNL_RX(chnl_rx[chnl]), 
-                     .CHNL_RX_ACK(chnl_rx_ack[chnl]), 
-                     .CHNL_RX_LAST(chnl_rx_last[chnl]), 
-                     .CHNL_RX_LEN(chnl_rx_len[32*chnl +:32]), 
-                     .CHNL_RX_OFF(chnl_rx_off[31*chnl +:31]), 
-                     .CHNL_RX_DATA(chnl_rx_data[C_PCI_DATA_WIDTH*chnl +:C_PCI_DATA_WIDTH]), 
-                     .CHNL_RX_DATA_VALID(chnl_rx_data_valid[chnl]), 
-                     .CHNL_RX_DATA_REN(chnl_rx_data_ren[chnl]),
+                     .CHNL_RX_CLK(chnl_rx_clk), 
+                     .CHNL_RX(chnl_rx), 
+                     .CHNL_RX_ACK(chnl_rx_ack), 
+                     .CHNL_RX_LAST(chnl_rx_last), 
+                     .CHNL_RX_LEN(chnl_rx_len), 
+                     .CHNL_RX_OFF(chnl_rx_off), 
+                     .CHNL_RX_DATA(chnl_rx_data), 
+                     .CHNL_RX_DATA_VALID(chnl_rx_data_valid), 
+                     .CHNL_RX_DATA_REN(chnl_rx_data_ren),
                      // Tx interface
-                     .CHNL_TX_CLK(chnl_tx_clk[chnl]), 
-                     .CHNL_TX(chnl_tx[chnl]), 
-                     .CHNL_TX_ACK(chnl_tx_ack[chnl]), 
-                     .CHNL_TX_LAST(chnl_tx_last[chnl]), 
-                     .CHNL_TX_LEN(chnl_tx_len[32*chnl +:32]), 
-                     .CHNL_TX_OFF(chnl_tx_off[31*chnl +:31]), 
-                     .CHNL_TX_DATA(chnl_tx_data[C_PCI_DATA_WIDTH*chnl +:C_PCI_DATA_WIDTH]), 
-                     .CHNL_TX_DATA_VALID(chnl_tx_data_valid[chnl]), 
-                     .CHNL_TX_DATA_REN(chnl_tx_data_ren[chnl])
+                     .CHNL_TX_CLK(chnl_tx_clk), 
+                     .CHNL_TX(chnl_tx), 
+                     .CHNL_TX_ACK(chnl_tx_ack), 
+                     .CHNL_TX_LAST(chnl_tx_last), 
+                     .CHNL_TX_LEN(chnl_tx_len), 
+                     .CHNL_TX_OFF(chnl_tx_off), 
+                     .CHNL_TX_DATA(chnl_tx_data), 
+                     .CHNL_TX_DATA_VALID(chnl_tx_data_valid), 
+                     .CHNL_TX_DATA_REN(chnl_tx_data_ren)
                      );    
-        end
-    endgenerate
 endmodule

@@ -79,15 +79,15 @@ module tx_engine_selector
     // Search for the next request so that we can move onto it immediately after
     // the current channel has released its request.
     always @ (posedge CLK) begin
-        rReq <= #1 (RST ? 1'd0 : _rReq);
-        rReqChnl <= #1 (RST ? 4'd0 : _rReqChnl);
-        rReqChnlNext <= #1 (RST ? 4'd0 : _rReqChnlNext);
-        rChnlNext <= #1 (RST ? 4'd0 : _rChnlNext);
-        rChnlNextNext <= #1 (RST ? 4'd0 : _rChnlNextNext);
-        rChnlNextDfrnt <= #1 (RST ? 1'd0 : _rChnlNextDfrnt);
-        rChnlNextNextOn <= #1 (RST ? 1'd0 : _rChnlNextNextOn);
-        rReqChnlsSame <= #1 (RST ? 1'd0 : _rReqChnlsSame);
-        rReqChnlNextUpdated <= #1 (RST ? 1'd1 : _rReqChnlNextUpdated);
+        rReq <=  (RST ? 1'd0 : _rReq);
+        rReqChnl <=  (RST ? 4'd0 : _rReqChnl);
+        rReqChnlNext <=  (RST ? 4'd0 : _rReqChnlNext);
+        rChnlNext <=  (RST ? 4'd0 : _rChnlNext);
+        rChnlNextNext <=  (RST ? 4'd0 : _rChnlNextNext);
+        rChnlNextDfrnt <=  (RST ? 1'd0 : _rChnlNextDfrnt);
+        rChnlNextNextOn <=  (RST ? 1'd0 : _rChnlNextNextOn);
+        rReqChnlsSame <=  (RST ? 1'd0 : _rReqChnlsSame);
+        rReqChnlNextUpdated <=  (RST ? 1'd1 : _rReqChnlNextUpdated);
     end
 
     always @ (*) begin

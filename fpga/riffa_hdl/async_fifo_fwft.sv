@@ -100,35 +100,35 @@ async_fifo #(.C_WIDTH(C_WIDTH), .C_DEPTH(C_DEPTH)) fifo (
 
 always @ (posedge RD_CLK) begin
 	if (RD_RST) begin
-		rCount <= #1 0;
-		rDataValid <= #1 0;
-		rCacheValid <= #1 0;
-		rFifoDataValid <= #1 0;
+		rCount <=  0;
+		rDataValid <=  0;
+		rCacheValid <=  0;
+		rFifoDataValid <=  0;
 	end
 	else begin
 		// Keep track of the count
-		rCount <= #1 rCount + (wRen & !wEmpty) - (!RD_EMPTY & RD_EN);
+		rCount <=  rCount + (wRen & !wEmpty) - (!RD_EMPTY & RD_EN);
 
 		// Signals when wData from FIFO is valid
-		rFifoDataValid <= #1 (wRen & !wEmpty);
+		rFifoDataValid <=  (wRen & !wEmpty);
 
 		// Keep rData up to date
 		if (rFifoDataValid) begin
 			if (RD_EN | !rDataValid) begin
-				rData <= #1 wData;
-				rDataValid <= #1 1'd1;
-				rCacheValid <= #1 1'd0;
+				rData <=  wData;
+				rDataValid <=  1'd1;
+				rCacheValid <=  1'd0;
 			end
 			else begin
-				rCacheValid <= #1 1'd1;
+				rCacheValid <=  1'd1;
 			end
-			rCache  <= #1 wData;
+			rCache  <=  wData;
 		end
 		else begin
 			if (RD_EN | !rDataValid) begin
-				rData <= #1 rCache;
-				rDataValid <= #1 rCacheValid;
-				rCacheValid <= #1 1'd0;
+				rData <=  rCache;
+				rDataValid <=  rCacheValid;
+				rCacheValid <=  1'd0;
 			end
 		end
 	end

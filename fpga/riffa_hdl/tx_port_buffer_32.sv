@@ -73,7 +73,7 @@ assign RD_DATA = rFifoData;
 
 // Buffer the input signals that come from outside the tx_port.
 always @ (posedge CLK) begin
-	rFifoRdEn <= #1 (RST ? 1'd0 : _rFifoRdEn);
+	rFifoRdEn <=  (RST ? 1'd0 : _rFifoRdEn);
 end
 
 always @ (*) begin
@@ -98,7 +98,7 @@ sync_fifo #(.C_WIDTH(C_FIFO_DATA_WIDTH), .C_DEPTH(C_FIFO_DEPTH), .C_PROVIDE_COUN
 
 // Buffer data from the FIFO.
 always @ (posedge CLK) begin
-	rFifoData <= #1 _rFifoData;
+	rFifoData <=  _rFifoData;
 end
 
 always @ (*) begin

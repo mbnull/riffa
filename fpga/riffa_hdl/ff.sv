@@ -48,6 +48,6 @@ module ff
      output reg Q
      );
     always @ (posedge CLK) begin 
-	    Q <= #1 D; 
+	    Q <=  D; 
     end
 endmodule

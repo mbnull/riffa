@@ -196,11 +196,11 @@ assign CHNL_RX_OFF = rOffLast[31:1];
 
 // Buffer signals that come from outside the rx_port.
 always @ (posedge CLK) begin
-	rTxnData <= #1 _rTxnData;
-	rTxnOffLastValid <= #1 _rTxnOffLastValid;
-	rTxnLenValid <= #1 _rTxnLenValid;
-	rTxnDoneAck <= #1 (RST ? 1'd0 : _rTxnDoneAck);	
-	rRxDataEn <= #1 _rRxDataEn;
+	rTxnData <=  _rTxnData;
+	rTxnOffLastValid <=  _rTxnOffLastValid;
+	rTxnLenValid <=  _rTxnLenValid;
+	rTxnDoneAck <=  (RST ? 1'd0 : _rTxnDoneAck);	
+	rRxDataEn <=  _rRxDataEn;
 end
 
 always @ (*) begin
@@ -214,14 +214,14 @@ end
 
 // Handle RX lifecycle.
 always @ (posedge CLK) begin
-	rMainState <= #1 (RST ? `S_RXPORTRD_MAIN_IDLE : _rMainState);
-	rOffLast <= #1 _rOffLast;
-	rReadWords <= #1 _rReadWords;
-	rReadWordsZero <= #1 _rReadWordsZero;
-	rStart <= #1 _rStart;
-	rFlushed <= #1 _rFlushed;
-	rDoneLen <= #1 (RST ? 0 : _rDoneLen);
-	rTxnDone <= #1 _rTxnDone;
+	rMainState <=  (RST ? `S_RXPORTRD_MAIN_IDLE : _rMainState);
+	rOffLast <=  _rOffLast;
+	rReadWords <=  _rReadWords;
+	rReadWordsZero <=  _rReadWordsZero;
+	rStart <=  _rStart;
+	rFlushed <=  _rFlushed;
+	rDoneLen <=  (RST ? 0 : _rDoneLen);
+	rTxnDone <=  _rTxnDone;
 end
 
 always @ (*) begin
@@ -288,31 +288,31 @@ end
 // after every request. Continue until all words have been requested.
 wire [9:0] wAddrLoInv = ~rAddr[11:2];
 always @ (posedge CLK) begin
-	rRxState <= #1 (RST ? `S_RXPORTRD_RX_IDLE : _rRxState);
-	rSgRen <= #1 (RST ? 1'd0: _rSgRen);
-	rWords <= #1 _rWords;
-	rBufWords <= #1 _rBufWords;
-	rBufWordsInit <= #1 _rBufWordsInit;
-	rLargeBuf <= #1 _rLargeBuf;
-	rAddr <= #1 _rAddr;
-	rCarry <= #1 _rCarry;
-	rValsProp <= #1 _rValsProp;
-	rPageRem <= #1 _rPageRem;
-	rPageSpill <= #1 _rPageSpill;
-	rPageSpillInit <= #1 _rPageSpillInit;
-	rCopyBufWords <= #1 _rCopyBufWords;
-	rUseInit <= #1 _rUseInit;
-	rPreLen <= #1 _rPreLen;
-	rMaxPayloadTrain <= #1 _rMaxPayloadTrain;
-	rMaxPayloadShift <= #1 _rMaxPayloadShift;
-	rMaxPayload <= #1 _rMaxPayload;
-	rPayloadSpill <= #1 _rPayloadSpill;
-	rMaxLen <= #1 _rMaxLen;
-	rLen <= #1 _rLen;
-	rLenEQWordsHi <= #1 _rLenEQWordsHi;
-	rLenEQWordsLo <= #1 _rLenEQWordsLo;
-	rLenEQBufWordsHi <= #1 _rLenEQBufWordsHi;
-	rLenEQBufWordsLo <= #1 _rLenEQBufWordsLo;
+	rRxState <=  (RST ? `S_RXPORTRD_RX_IDLE : _rRxState);
+	rSgRen <=  (RST ? 1'd0: _rSgRen);
+	rWords <=  _rWords;
+	rBufWords <=  _rBufWords;
+	rBufWordsInit <=  _rBufWordsInit;
+	rLargeBuf <=  _rLargeBuf;
+	rAddr <=  _rAddr;
+	rCarry <=  _rCarry;
+	rValsProp <=  _rValsProp;
+	rPageRem <=  _rPageRem;
+	rPageSpill <=  _rPageSpill;
+	rPageSpillInit <=  _rPageSpillInit;
+	rCopyBufWords <=  _rCopyBufWords;
+	rUseInit <=  _rUseInit;
+	rPreLen <=  _rPreLen;
+	rMaxPayloadTrain <=  _rMaxPayloadTrain;
+	rMaxPayloadShift <=  _rMaxPayloadShift;
+	rMaxPayload <=  _rMaxPayload;
+	rPayloadSpill <=  _rPayloadSpill;
+	rMaxLen <=  _rMaxLen;
+	rLen <=  _rLen;
+	rLenEQWordsHi <=  _rLenEQWordsHi;
+	rLenEQWordsLo <=  _rLenEQWordsLo;
+	rLenEQBufWordsHi <=  _rLenEQBufWordsHi;
+	rLenEQBufWordsLo <=  _rLenEQBufWordsLo;
 end
 
 always @ (*) begin
@@ -415,31 +415,31 @@ end
 
 // Count the data.
 always @ (posedge CLK) begin
-	rRecvdWords <= #1 _rRecvdWords;
-	rReqdWords <= #1 _rReqdWords;
-	rPartWords <= #1 _rPartWords;
-	rAckCount <= #1 _rAckCount;
-	rAckCountEQ0 <= #1 _rAckCountEQ0;
-	rPartWordsRecvd <= #1 _rPartWordsRecvd;
-	rRequestingWords <= #1 _rRequestingWords;
-	rAvailWords <= #1 _rAvailWords;
-	rCarryInv <= #1 _rCarryInv;
-	rSpaceAvail <= #1 _rSpaceAvail;
-	rLastDoneRead <= #1 (RST ? 1'd1 : _rLastDoneRead);	
+	rRecvdWords <=  _rRecvdWords;
+	rReqdWords <=  _rReqdWords;
+	rPartWords <=  _rPartWords;
+	rAckCount <=  _rAckCount;
+	rAckCountEQ0 <=  _rAckCountEQ0;
+	rPartWordsRecvd <=  _rPartWordsRecvd;
+	rRequestingWords <=  _rRequestingWords;
+	rAvailWords <=  _rAvailWords;
+	rCarryInv <=  _rCarryInv;
+	rSpaceAvail <=  _rSpaceAvail;
+	rLastDoneRead <=  (RST ? 1'd1 : _rLastDoneRead);	
 end
 
 always @ (*) begin
 	// Count words as they arrive (words from the rx_engine directly).
 	if (rMainState[0]) // S_RXPORTRD_MAIN_IDLE
-		_rRecvdWords = #1 0;
+		_rRecvdWords =  0;
 	else
-		_rRecvdWords = #1 rRecvdWords + rRxDataEn;
+		_rRecvdWords =  rRecvdWords + rRxDataEn;
 
 	// Count words as they are requested.
 	if (rMainState[0]) // S_RXPORTRD_MAIN_IDLE
-		_rReqdWords = #1 0;
+		_rReqdWords =  0;
 	else
-      _rReqdWords = #1 rReqdWords + ({10{RX_REQ_ACK}} & rLen);
+      _rReqdWords =  rReqdWords + ({10{RX_REQ_ACK}} & rLen);
 
 	// Track outstanding requests
 	if (rMainState[0]) // S_RXPORTRD_MAIN_IDLE
@@ -452,7 +452,7 @@ always @ (*) begin
 	_rLastDoneRead = (rTxnDone ? 1'd0 : (rLastDoneRead | rTxnDoneAck));
 
 	// Track the amount of words that are expected to arrive.
-	_rPartWords = #1 (rTxnLenValid ? rTxnData : rPartWords);
+	_rPartWords =  (rTxnLenValid ? rTxnData : rPartWords);
 
 	// Compare counts.
 	_rPartWordsRecvd = (rRecvdWords >= rPartWords);
@@ -469,8 +469,8 @@ end
 // to complete the transaction. The TXN_DONE will let the workstation know it can
 // release the current scatter gather mappings and allocate new ones.
 always @ (posedge CLK) begin
-	rPartialDone <= #1 _rPartialDone;
-	rReqPartialDone <= #1 (RST ? 1'd0 : _rReqPartialDone);
+	rPartialDone <=  _rPartialDone;
+	rReqPartialDone <=  (RST ? 1'd0 : _rReqPartialDone);
 end
 
 always @ (*) begin
@@ -488,7 +488,7 @@ end
 
 // Handle errors in the main data or scatter gather data.
 always @ (posedge CLK) begin
-	rErr <= #1 (RST ? 1'd0 : _rErr);
+	rErr <=  (RST ? 1'd0 : _rErr);
 end
 
 always @ (*) begin

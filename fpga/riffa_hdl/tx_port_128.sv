@@ -120,9 +120,9 @@ reg									rRst=0;
 
 // Generate a wide reset from the input reset.
 always @ (posedge CLK) begin
-	rRst <= #1 rWideRst[4]; 
+	rRst <=  rWideRst[4]; 
 	if (RST) 
-		rWideRst <= #1 5'b11111;
+		rWideRst <=  5'b11111;
 	else 
 		rWideRst <= (rWideRst<<1);
 end

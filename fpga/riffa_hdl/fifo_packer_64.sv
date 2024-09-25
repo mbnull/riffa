@@ -82,16 +82,16 @@ assign PACKED_DATA_FLUSHED = rPackedFlushed;
 wire [63:0] wMask = {64{1'b1}}<<(32*rDataInEn);
 wire [63:0]	wDataMasked = ~wMask & rDataIn;
 always @ (posedge CLK) begin
-	rPackedCount <= #1 (RST ? 2'd0 : _rPackedCount);
-	rPackedDone <= #1 (RST ? 1'd0 : _rPackedDone);
-	rPackedErr <= #1 (RST ? 1'd0 : _rPackedErr);
-	rPackedFlush <= #1 (RST ? 1'd0 : _rPackedFlush);
-	rPackedFlushed <= #1 (RST ? 1'd0 : _rPackedFlushed);
-	rPackedData <= #1 (RST ? 96'd0 : _rPackedData);
-	rDataIn <= #1 _rDataIn;
-	rDataInEn <= #1 (RST ? 2'd0 : _rDataInEn);
-	rDataMasked <= #1 _rDataMasked;
-	rDataMaskedEn <= #1 (RST ? 2'd0 : _rDataMaskedEn);
+	rPackedCount <=  (RST ? 2'd0 : _rPackedCount);
+	rPackedDone <=  (RST ? 1'd0 : _rPackedDone);
+	rPackedErr <=  (RST ? 1'd0 : _rPackedErr);
+	rPackedFlush <=  (RST ? 1'd0 : _rPackedFlush);
+	rPackedFlushed <=  (RST ? 1'd0 : _rPackedFlushed);
+	rPackedData <=  (RST ? 96'd0 : _rPackedData);
+	rDataIn <=  _rDataIn;
+	rDataInEn <=  (RST ? 2'd0 : _rDataInEn);
+	rDataMasked <=  _rDataMasked;
+	rDataMaskedEn <=  (RST ? 2'd0 : _rDataMaskedEn);
 end
 
 always @ (*) begin

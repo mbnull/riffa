@@ -104,7 +104,7 @@ assign REQ_ACK = rAck;
 
 // Buffer signals that come from outside the rx_port.
 always @ (posedge CLK) begin
-	rRxReqAck <= #1 (RST ? 1'd0 : _rRxReqAck);
+	rRxReqAck <=  (RST ? 1'd0 : _rRxReqAck);
 end
 
 always @ (*) begin
@@ -115,13 +115,13 @@ end
 // Handle issuing read requests. Scatter gather requests are processed
 // with higher priority than the main channel.
 always @ (posedge CLK) begin
-	rState <= #1 (RST ? `S_RXPORTREQ_RX_TX : _rState);
-	rLen <= #1 _rLen;
-	rAddr <= #1 _rAddr;
-	rSgRxAck <= #1 _rSgRxAck;
-	rSgTxAck <= #1 _rSgTxAck;
-	rMainAck <= #1 _rMainAck;
-	rAck <= #1 _rAck;
+	rState <=  (RST ? `S_RXPORTREQ_RX_TX : _rState);
+	rLen <=  _rLen;
+	rAddr <=  _rAddr;
+	rSgRxAck <=  _rSgRxAck;
+	rSgTxAck <=  _rSgTxAck;
+	rMainAck <=  _rMainAck;
+	rAck <=  _rAck;
 end
 
 always @ (*) begin

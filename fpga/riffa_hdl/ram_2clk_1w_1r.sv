@@ -66,9 +66,9 @@ module ram_2clk_1w_1r
     assign DOUTB = rDout;
     always @(posedge CLKA) begin
         if (WEA)
-            rRAM[ADDRA] <= #1 DINA;
+            rRAM[ADDRA] <=  DINA;
     end
     always @(posedge CLKB) begin
-        rDout <= #1 rRAM[ADDRB];
+        rDout <=  rRAM[ADDRB];
     end
 endmodule

@@ -141,19 +141,19 @@ module reorder_queue
     // Move through tag/slot/bucket space.
     always @ (posedge CLK) begin
         if (RST) begin
-            rPos <= #1 0;
-            rUse <= #1 0;
-            rValid <= #1 0;
+            rPos <=  0;
+            rUse <=  0;
+            rValid <=  0;
         end
         else begin
             if (INT_TAG_VALID & EXT_TAG_VALID) begin
-                rPos <= #1 rPos + 1'd1;
-                rUse <= #1 1<<rPos;
-                rValid <= #1 !rUsing[rPos + 1'd1];
+                rPos <=  rPos + 1'd1;
+                rUse <=  1<<rPos;
+                rValid <=  !rUsing[rPos + 1'd1];
             end
             else begin
-                rUse <= #1 0;
-                rValid <= #1 !rUsing[rPos];
+                rUse <=  0;
+                rValid <=  !rUsing[rPos];
             end
         end
     end
@@ -162,12 +162,12 @@ module reorder_queue
     // Update tag/slot/bucket status.
     always @ (posedge CLK) begin
         if (RST) begin
-            rUsing <= #1 0;
-            rFinished <= #1 0;
+            rUsing <=  0;
+            rFinished <=  0;
         end
         else begin
-            rUsing <= #1 (rUsing | rUse) & ~wClear;
-            rFinished <= #1 (rFinished | wFinish) & ~wClear;
+            rUsing <=  (rUsing | rUse) & ~wClear;
+            rFinished <=  (rFinished | wFinish) & ~wClear;
         end
     end
 

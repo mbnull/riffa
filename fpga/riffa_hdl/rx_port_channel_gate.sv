@@ -98,7 +98,7 @@ assign CHNL_RX_DATA_VALID = !RD_EMPTY;
 
 // Buffer the input signals that come from outside the rx_port.
 always @ (posedge CHNL_CLK) begin
-	rChnlRxAck <= #1 (RST ? 1'd0 : _rChnlRxAck);
+	rChnlRxAck <=  (RST ? 1'd0 : _rChnlRxAck);
 end
 
 always @ (*) begin
@@ -122,7 +122,7 @@ syncff rxAckSig (.CLK(CLK), .IN_ASYNC(rAckd), .OUT_SYNC(RX_ACK_RECVD));
 
 // Capture CHNL_RX_ACK and reset only after the CHNL_RX drops.
 always @ (posedge CHNL_CLK) begin
-	rAckd <= #1 (RST ? 1'd0 : _rAckd);
+	rAckd <=  (RST ? 1'd0 : _rAckd);
 end
 
 always @ (*) begin
@@ -132,9 +132,9 @@ end
 
 // Count the words consumed by the channel and pass it into the CLK domain.
 always @ (posedge CHNL_CLK) begin
-	rConsumed <= #1 _rConsumed;
-	rConsumedStable <= #1 _rConsumedStable;
-	rCountRead <= #1 (RST ? 1'd0 : _rCountRead);
+	rConsumed <=  _rConsumed;
+	rConsumedStable <=  _rConsumedStable;
+	rCountRead <=  (RST ? 1'd0 : _rCountRead);
 end
 
 always @ (*) begin
@@ -144,7 +144,7 @@ always @ (*) begin
 end
 
 always @ (posedge CLK) begin
-	rConsumedSample <= #1 _rConsumedSample;
+	rConsumedSample <=  _rConsumedSample;
 end
 
 always @ (*) begin

@@ -77,31 +77,31 @@ module recv_credit_flow_ctrl
     always @(posedge CLK) begin
         rInfHCred <= (CONFIG_MAX_CPL_HDR == 0);
         rInfDCred <= (CONFIG_MAX_CPL_DATA == 0);
-        rMaxRecv <= #1 (13'd128<<CONFIG_MAX_READ_REQUEST_SIZE);
-        rCplHAmt <= #1 (rMaxRecv>>({2'b11, CONFIG_CPL_BOUNDARY_SEL}));
-        rCplDAmt <= #1 (rMaxRecv>>4);
-        rCplHAvail <= #1 (rCplH <= CONFIG_MAX_CPL_HDR);
-        rCplDAvail <= #1 (rCplD <= CONFIG_MAX_CPL_DATA);
-        rCreditAvail <= #1 ((rCplHAvail|rInfHCred) & (rCplDAvail | rInfDCred));
+        rMaxRecv <=  (13'd128<<CONFIG_MAX_READ_REQUEST_SIZE);
+        rCplHAmt <=  (rMaxRecv>>({2'b11, CONFIG_CPL_BOUNDARY_SEL}));
+        rCplDAmt <=  (rMaxRecv>>4);
+        rCplHAvail <=  (rCplH <= CONFIG_MAX_CPL_HDR);
+        rCplDAvail <=  (rCplD <= CONFIG_MAX_CPL_DATA);
+        rCreditAvail <=  ((rCplHAvail|rInfHCred) & (rCplDAvail | rInfDCred));
     end
 
     // Count the number of outstanding read completion requests.
     always @ (posedge CLK) begin
         if (RST) begin
-            rCplH <= #1 0;
-            rCplD <= #1 0;
+            rCplH <=  0;
+            rCplD <=  0;
         end
         else if (RX_ENG_RD_DONE & TX_ENG_RD_REQ_SENT) begin
-            rCplH <= #1 rCplH;
-            rCplD <= #1 rCplD;
+            rCplH <=  rCplH;
+            rCplD <=  rCplD;
         end
         else if (TX_ENG_RD_REQ_SENT) begin
-            rCplH <= #1 rCplH + rCplHAmt;
-            rCplD <= #1 rCplD + rCplDAmt;
+            rCplH <=  rCplH + rCplHAmt;
+            rCplD <=  rCplD + rCplDAmt;
         end
         else if (RX_ENG_RD_DONE) begin
-            rCplH <= #1 rCplH - rCplHAmt;
-            rCplD <= #1 rCplD - rCplDAmt;
+            rCplH <=  rCplH - rCplHAmt;
+            rCplD <=  rCplD - rCplDAmt;
         end
     end
 

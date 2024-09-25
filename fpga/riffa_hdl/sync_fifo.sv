@@ -90,12 +90,12 @@ ram_1clk_1w_1r #(.C_RAM_WIDTH(C_WIDTH), .C_RAM_DEPTH(C_REAL_DEPTH)) mem (
 // Write pointer logic.
 always @ (posedge CLK) begin
 	if (RST) begin
-		rWrPtr <= #1 0;
-		rWrPtrPlus1 <= #1 1;
+		rWrPtr <=  0;
+		rWrPtrPlus1 <=  1;
 	end
 	else begin
-		rWrPtr <= #1 _rWrPtr;
-		rWrPtrPlus1 <= #1 _rWrPtrPlus1;
+		rWrPtr <=  _rWrPtr;
+		rWrPtrPlus1 <=  _rWrPtrPlus1;
 	end
 end
 
@@ -114,12 +114,12 @@ end
 // Read pointer logic.
 always @ (posedge CLK) begin
 	if (RST) begin
-		rRdPtr <= #1 0;
-		rRdPtrPlus1 <= #1 1;
+		rRdPtr <=  0;
+		rRdPtrPlus1 <=  1;
 	end
 	else begin
-		rRdPtr <= #1 _rRdPtr;
-		rRdPtrPlus1 <= #1 _rRdPtrPlus1;
+		rRdPtr <=  _rRdPtr;
+		rRdPtrPlus1 <=  _rRdPtrPlus1;
 	end
 end
 
@@ -139,7 +139,7 @@ end
 assign EMPTY = rEmpty;
 
 always @ (posedge CLK) begin
-	rEmpty <= #1 (RST ? 1'd1 : _rEmpty);
+	rEmpty <=  (RST ? 1'd1 : _rEmpty);
 end
 
 always @ (*) begin
@@ -151,7 +151,7 @@ end
 assign FULL = rFull;
 
 always @ (posedge CLK) begin
-	rFull <= #1 (RST ? 1'd0 : _rFull);
+	rFull <=  (RST ? 1'd0 : _rFull);
 end
 
 always @ (*) begin
@@ -168,9 +168,9 @@ if (C_PROVIDE_COUNT) begin: provide_count
 	// Calculate read count
 	always @ (posedge CLK) begin
 		if (RST)
-			rCount <= #1 0;
+			rCount <=  0;
 		else
-			rCount <= #1 _rCount;
+			rCount <=  _rCount;
 	end
 
 	always @ (*) begin

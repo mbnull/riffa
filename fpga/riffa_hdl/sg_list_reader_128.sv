@@ -88,13 +88,13 @@ assign LEN = rLen;
 
 // Capture address and length as it comes out of the FIFO
 always @ (posedge CLK) begin
-	rRdState <= #1 (RST ? `S_SGR128_RD_0 : _rRdState);
-	rCapState <= #1 (RST ? `S_SGR128_CAP_0 : _rCapState);
-	rData <= #1 _rData;
-	rFifoValid <= #1 (RST ? 1'd0 : _rFifoValid);
-	rDataValid <= #1 (RST ? 1'd0 : _rDataValid);
-	rAddr <= #1 _rAddr;
-	rLen <= #1 _rLen;
+	rRdState <=  (RST ? `S_SGR128_RD_0 : _rRdState);
+	rCapState <=  (RST ? `S_SGR128_CAP_0 : _rCapState);
+	rData <=  _rData;
+	rFifoValid <=  (RST ? 1'd0 : _rFifoValid);
+	rDataValid <=  (RST ? 1'd0 : _rDataValid);
+	rAddr <=  _rAddr;
+	rLen <=  _rLen;
 end
 
 always @ (*) begin

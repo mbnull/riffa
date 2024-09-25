@@ -48,7 +48,9 @@
 //-----------------------------------------------------------------------------
 `timescale 1ns/1ns
 module chnl_tester #(
-	parameter C_PCI_DATA_WIDTH = 9'd32
+	parameter C_PCI_DATA_WIDTH = 256,
+	parameter C_DATA_WORD_WIDTH = 4,
+	parameter C_MAX_READ_REQ = 2
 )
 (
 	input CLK,
@@ -93,42 +95,42 @@ assign CHNL_TX_DATA_VALID = (rState == 2'd3);
 
 always @(posedge CLK or posedge RST) begin
 	if (RST) begin
-		rLen <= #1 0;
-		rCount <= #1 0;
-		rState <= #1 0;
-		rData <= #1 0;
+		rLen <=  0;
+		rCount <=  0;
+		rState <=  0;
+		rData <=  0;
 	end
 	else begin
 		case (rState)
 		
 		2'd0: begin // Wait for start of RX, save length
 			if (CHNL_RX) begin
-				rLen <= #1 CHNL_RX_LEN;
-				rCount <= #1 0;
-				rState <= #1 2'd1;
+				rLen <=  CHNL_RX_LEN;
+				rCount <=  0;
+				rState <=  2'd1;
 			end
 		end
 		
 		2'd1: begin // Wait for last data in RX, save value
 			if (CHNL_RX_DATA_VALID) begin
-				rData <= #1 CHNL_RX_DATA;
-				rCount <= #1 rCount + (C_PCI_DATA_WIDTH/32);
+				rData <=  CHNL_RX_DATA;
+				rCount <=  rCount + (C_PCI_DATA_WIDTH/32);
 			end
 			if (rCount >= rLen)
-				rState <= #1 2'd2;
+				rState <=  2'd2;
 		end
 
 		2'd2: begin // Prepare for TX
-			rCount <= #1 (C_PCI_DATA_WIDTH/32);
-			rState <= #1 2'd3;
+			rCount <=  (C_PCI_DATA_WIDTH/32);
+			rState <=  2'd3;
 		end
 
 		2'd3: begin // Start TX with save length and data value
 			if (CHNL_TX_DATA_REN & CHNL_TX_DATA_VALID) begin
-				rData <= #1 {rCount + 4, rCount + 3, rCount + 2, rCount + 1};
-				rCount <= #1 rCount + (C_PCI_DATA_WIDTH/32);
+				rData <=  {rCount + 4, rCount + 3, rCount + 2, rCount + 1};
+				rCount <=  rCount + (C_PCI_DATA_WIDTH/32);
 				if (rCount >= rLen)
-					rState <= #1 2'd0;
+					rState <=  2'd0;
 			end
 		end
 		
